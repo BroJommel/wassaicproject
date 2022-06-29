@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>Carousel Arrow Right</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Carousel-Arrow-Right" transform="translate(25.000000, 25.000000) rotate(90.000000) translate(-25.000000, -25.000000) ">
+            <path d="M25,50 C38.8071,50 50,38.8071 50,25 C50,11.1929 38.8071,0 25,0 C11.1929,0 0,11.1929 0,25 C0,38.8071 11.1929,50 25,50 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <polyline id="Path" stroke="#000000" points="23.48 13.89 34.6 25 23.48 36.11"></polyline>
+            <path d="M14.23,25 L34.6,25" id="Path" stroke="#000000"></path>
+        </g>
+    </g>
+</svg>

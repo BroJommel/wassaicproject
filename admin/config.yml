@@ -1,0 +1,5117 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: public_art
+    label: Public Art
+    folder: cms/public-art
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Title
+        name: body
+        widget: markdown
+        required: false
+      - hint: i.e. "Clear acrylic, steel pipe, steel wire, 92 in x 96 in x 50 in"
+        name: f_materials-dimensions
+        label: Materials/Dimensions
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_description
+        label: Description
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_hero-image
+        label: Hero Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_additional-images
+        label: Additional Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: >-
+          Most artists install one piece. Some artists install several pieces at
+          once (see Jen Hitchings).
+        name: f_piece-two-caption
+        label: Piece Two Caption
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_piece-three-caption
+        label: Piece Three Caption
+        widget: markdown
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: public-art
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[public-art].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: event
+    label: Events
+    folder: cms/event
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Title
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Date Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_start-date-time
+        label: Start Date/Time
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_end-date-time
+        label: End Date/Time
+        widget: datetime
+        required: false
+      - hint: >-
+          Determines whether event page includes add to calendar button. (You
+          can't generate a link that creates multiple calendar events at once.)
+        name: f_multi-date
+        label: Multi-Date?
+        widget: boolean
+        required: false
+      - hint: ''
+        name: f_location
+        label: Location
+        widget: text
+        required: false
+      - hint: e.g. Grades 1–12 or 21+
+        name: f_who
+        label: Who
+        widget: string
+        required: false
+      - hint: ''
+        name: f_price
+        label: Price
+        widget: string
+        required: false
+      - hint: e.g. scholarship information
+        name: f_pricing-note-2
+        label: Pricing Note
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_description
+        label: Description
+        widget: markdown
+        required: false
+      - hint: Used on event lists
+        name: f_short-description
+        label: Short Description
+        widget: string
+        required: false
+      - hint: ''
+        name: f_image
+        label: Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of above image.
+        name: f_thumbnail
+        label: Thumbnail
+        widget: object
+        required: true
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: true
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_alt-text-image-1
+        label: 'Alt Text: Image 1'
+        widget: string
+        required: false
+      - hint: ''
+        name: f_rsvp-link
+        label: RSVP Link
+        widget: string
+        required: false
+      - hint: e.g. art-scouts-session-1-tickets
+        name: f_eventbrite-url-slug
+        label: Eventbrite URL Slug
+        widget: string
+        required: false
+      - hint: 12-digit number after URL slug
+        name: f_eventbrite-event-id
+        label: Eventbrite Event ID
+        widget: string
+        required: false
+      - hint: ''
+        name: f_tags
+        label: Tags
+        widget: relation
+        required: false
+        collection: tags
+        value_field: cms/tags/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: event
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[event].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: exhibitions
+    label: Exhibitions
+    folder: cms/exhibitions
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Exhibition Title
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Hero Image Caption
+        name: body
+        widget: markdown
+        required: false
+      - hint: e.g. "2021 Summer Exhibition"
+        name: f_subtitle
+        label: Subtitle
+        widget: string
+        required: false
+      - hint: ''
+        name: f_hero-image
+        label: Hero Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_hero-image-alt-text
+        label: Hero Image Alt Text
+        widget: text
+        required: false
+      - hint: ''
+        name: f_dates
+        label: Start Date
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_end-date
+        label: End Date
+        widget: datetime
+        required: false
+      - hint: e.g. "November 14, 2020 to March 27, 2021"
+        name: f_dates-1
+        label: Dates 1
+        widget: string
+        required: false
+      - hint: ''
+        name: f_hours
+        label: Hours
+        widget: text
+        required: false
+      - hint: i.e. Opening info, extended gallery hours, associated programs
+        name: f_additional-details
+        label: Additional Details
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_introduction
+        label: Introduction
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_artist-1-images
+        label: Artist 1 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-2-images
+        label: Artist 2 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-3-images
+        label: Artist 3 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-4-images
+        label: Artist 4 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-5-images
+        label: Artist 5 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-6-images
+        label: Artist 6 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-7-images
+        label: Artist 7 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-8-images
+        label: Artist 8 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-9-images
+        label: Artist 9 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-10-images
+        label: Artist 10 Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_type
+        label: Type
+        widget: select
+        required: false
+        options:
+          - label: Solo Show
+            value: Solo Show
+          - label: Group Show
+            value: Group Show
+          - label: Survey Show
+            value: Survey Show
+      - hint: ''
+        name: f_artists
+        label: Artists
+        widget: relation
+        required: false
+        collection: artists
+        value_field: cms/artists/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: exhibitions
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[exhibitions].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: who_we_are
+    label: Who We Ares
+    folder: cms/who-we-are
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Bio
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_profile-picture
+        label: Profile Picture
+        widget: object
+        required: true
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: true
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_job-title
+        label: Job Title
+        widget: string
+        required: false
+      - hint: ''
+        name: f_type
+        label: Type
+        widget: select
+        required: true
+        options:
+          - label: Co-Director
+            value: Co-Director
+          - label: Staff
+            value: Staff
+          - label: Board Member
+            value: Board Member
+          - label: Creative Contributor
+            value: Creative Contributor
+          - label: Alumni and Emeriti
+            value: Alumni and Emeriti
+      - hint: ''
+        name: f_email
+        label: Email
+        widget: string
+        required: false
+      - hint: ''
+        name: f_photos
+        label: Photos
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: who-we-are
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[who-we-are].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: artists
+    label: Artists
+    folder: cms/artists
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: Name of Artist
+        name: title
+        label: Title
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Introduction
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_portrait
+        label: Portrait
+        widget: object
+        required: true
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: true
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_interview-text-1-3500-char-max
+        label: Interview text 1
+        widget: markdown
+        required: true
+      - hint: Artwork, studio photos, install photos, etc.
+        name: f_photos
+        label: Photos
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_interview-text-2-3500-char-max
+        label: Interview text 2
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_photos-2
+        label: Photos 2
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_interview-text-3
+        label: Interview text 3
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_photos-3
+        label: Photos 3
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_interview-text-4
+        label: Interview text 4
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_photos-4
+        label: Photos 4
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-bio-exhibition-history
+        label: Artist bio
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_exhibitions
+        label: Exhibition History
+        widget: relation
+        required: false
+        collection: exhibitions
+        value_field: cms/exhibitions/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: >-
+          "This interview has been edited and condensed for clarity" or "This
+          interview has been edited and condensed from  two conversations."
+        name: f_editing-note
+        label: Editing note
+        widget: string
+        required: false
+      - hint: ''
+        name: f_portrait-2
+        label: Portrait 2
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: artists
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[artists].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: category
+    label: Categories
+    folder: cms/category
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: category
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[category].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: product
+    label: Products
+    folder: cms/product
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: variation-properties
+        label: Variation Properties
+        widget: list
+        required: false
+        summary: '{{name}}'
+        fields:
+          - hint: ''
+            name: slug
+            label: Slug
+            widget: hidden
+            required: true
+          - hint: ''
+            name: name
+            label: Name
+            widget: string
+            required: true
+          - hint: ''
+            name: values
+            label: Values
+            widget: list
+            required: true
+            summary: '{{name}}'
+            fields:
+              - hint: ''
+                name: slug
+                label: Slug
+                widget: hidden
+                required: true
+              - hint: ''
+                name: name
+                label: Name
+                widget: string
+                required: true
+      - hint: ''
+        name: variations
+        label: Variations
+        widget: list
+        required: true
+        summary: '{{title}}'
+        min: 1
+        fields:
+          - hint: Slug of the variation
+            name: slug
+            label: Slug
+            widget: string
+            required: true
+          - hint: Default variation?
+            name: default
+            label: Default
+            widget: boolean
+            required: true
+          - hint: ''
+            name: variation-properties
+            label: SKU Values
+            widget: prop-values
+            required: false
+          - hint: ''
+            name: title
+            label: Name
+            widget: string
+            required: true
+          - hint: ''
+            name: f_main-image
+            label: Main Image
+            widget: object
+            required: false
+            fields:
+              - hint: ''
+                name: url
+                label: Image
+                widget: image
+                required: false
+                allow_multiple: false
+              - hint: Image Alt
+                name: alt
+                label: alt
+                widget: string
+                required: false
+          - hint: ''
+            name: f_more-images
+            label: More Images
+            widget: list
+            required: false
+            fields:
+              - hint: ''
+                name: url
+                label: Image
+                widget: image
+                required: false
+                allow_multiple: false
+              - hint: Image Alt
+                name: alt
+                label: alt
+                widget: string
+                required: false
+          - hint: ''
+            name: f_price
+            label: Price
+            widget: price
+            required: true
+          - hint: Compare at Price must be higher than price
+            name: f_compare-at-price
+            label: Compare at price
+            widget: price
+            required: false
+          - hint: ''
+            name: f_download-files
+            label: Downloads
+            widget: list
+            required: false
+            fields:
+              - hint: ''
+                name: url
+                label: Image
+                widget: image
+                required: false
+                allow_multiple: false
+              - hint: Image Alt
+                name: alt
+                label: alt
+                widget: string
+                required: false
+          - hint: ''
+            name: f_width
+            label: Width
+            widget: number
+            required: false
+          - hint: ''
+            name: f_length
+            label: Length
+            widget: number
+            required: false
+          - hint: ''
+            name: f_height
+            label: Height
+            widget: number
+            required: false
+          - hint: ''
+            name: f_weight
+            label: Weight
+            widget: number
+            required: false
+          - hint: ''
+            name: f_sku
+            label: SKU
+            widget: string
+            required: false
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: Add this product to one or more categories.
+        name: f_category
+        label: Categories
+        widget: relation
+        required: false
+        collection: category
+        value_field: cms/category/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_description
+        label: Description
+        widget: string
+        required: false
+      - hint: ''
+        name: f_shippable
+        label: Requires Shipping
+        widget: boolean
+        required: false
+      - hint: ''
+        name: f_ec-product-type
+        label: Product type
+        widget: select
+        required: false
+        options:
+          - label: Physical
+            value: Physical
+          - label: Digital
+            value: Digital
+          - label: Service
+            value: Service
+          - label: Advanced
+            value: Advanced
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: product
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[product].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: library_items
+    label: Library Items
+    folder: cms/library-items
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_image
+        label: Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_images
+        label: Images
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: library-items
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[library-items].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: tags
+    label: Event Tags
+    folder: cms/tags
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: tags
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[tags].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: library_tags
+    label: Library Tags
+    folder: cms/library-tags
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: library-tags
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[library-tags].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Wassaic Project, key: -78fbbf6'
+            label: Text
+            name: '-78fbbf6'
+            widget: string
+          - hint: 'Original text: Events, key: 7c6ccd39'
+            label: Text
+            name: 7c6ccd39
+            widget: string
+          - hint: 'Original text: Exhibitions, key: 751d4c64'
+            label: Text
+            name: 751d4c64
+            widget: string
+          - hint: 'Original text: Education, key: 661d8788'
+            label: Text
+            name: 661d8788
+            widget: string
+          - hint: 'Original text: Residency, key: -9f38506'
+            label: Text
+            name: '-9f38506'
+            widget: string
+          - hint: 'Original text: About, key: 3c2336d'
+            label: Text
+            name: 3c2336d
+            widget: string
+          - hint: 'Original text: Visit, key: 4ed5d2b'
+            label: Text
+            name: 4ed5d2b
+            widget: string
+          - hint: 'Original text: Library, key: 6d20bc9b'
+            label: Text
+            name: 6d20bc9b
+            widget: string
+          - hint: 'Original text: Store, key: 4c808c1'
+            label: Text
+            name: 4c808c1
+            widget: string
+          - hint: 'Original text: Support, key: -b54e851'
+            label: Text
+            name: '-b54e851'
+            widget: string
+          - hint: 'Original text: Workshops, key: -46796054'
+            label: Text
+            name: '-46796054'
+            widget: string
+          - hint: 'Original text: Artist Talks, key: -5ed218d2'
+            label: Text
+            name: '-5ed218d2'
+            widget: string
+          - hint: 'Original text: Open Studios, key: -7661aa79'
+            label: Text
+            name: '-7661aa79'
+            widget: string
+          - hint: 'Original text: Benefits, key: 685742dc'
+            label: Text
+            name: 685742dc
+            widget: string
+          - hint: 'Original text: Virtual, key: 7f01b6eb'
+            label: Text
+            name: 7f01b6eb
+            widget: string
+          - hint: 'Original text: A Tournament of Lies, key: 4e9872dc'
+            label: Text
+            name: 4e9872dc
+            widget: string
+          - hint: 'Original text: Public Art, key: -17c23fd4'
+            label: Text
+            name: '-17c23fd4'
+            widget: string
+          - hint: 'Original text: Past Exhibitions, key: 7f0b1576'
+            label: Text
+            name: 7f0b1576
+            widget: string
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: 'Original text: Art Nest, key: -497321cb'
+            label: Text
+            name: '-497321cb'
+            widget: string
+          - hint: 'Original text: Makers Space, key: -6a23c5ab'
+            label: Text
+            name: '-6a23c5ab'
+            widget: string
+          - hint: 'Original text: Online Lessons, key: 5a6ead6e'
+            label: Text
+            name: 5a6ead6e
+            widget: string
+          - hint: 'Original text: Our Values, key: -62b76f4a'
+            label: Text
+            name: '-62b76f4a'
+            widget: string
+          - hint: 'Original text: Apply, key: 3c8934e'
+            label: Text
+            name: 3c8934e
+            widget: string
+          - hint: 'Original text: Summer Residency, key: -3d0c6c17'
+            label: Text
+            name: '-3d0c6c17'
+            widget: string
+          - hint: 'Original text: Winter Residency, key: 7a65077f'
+            label: Text
+            name: 7a65077f
+            widget: string
+          - hint: 'Original text: Family Residency, key: -2888aea2'
+            label: Text
+            name: '-2888aea2'
+            widget: string
+          - hint: |-
+              Original text: Print Editions
+                        , key: 60172fc2
+            label: Text
+            name: 60172fc2
+            widget: string
+          - hint: 'Original text: Mission, key: -5d08e694'
+            label: Text
+            name: '-5d08e694'
+            widget: string
+          - hint: "Original text: Who\_We Are, key: -aa186bc"
+            label: Text
+            name: '-aa186bc'
+            widget: string
+          - hint: 'Original text: Press, key: 49cb423'
+            label: Text
+            name: 49cb423
+            widget: string
+          - hint: 'Original text: Partnerships, key: 1486a20f'
+            label: Text
+            name: 1486a20f
+            widget: string
+          - hint: 'Original text: Opportunities, key: f7b7e91'
+            label: Text
+            name: f7b7e91
+            widget: string
+          - hint: 'Original text: Works for Sale, key: 336b905c'
+            label: Text
+            name: 336b905c
+            widget: string
+          - hint: 'Original text: Publications, key: 4183f7e7'
+            label: Text
+            name: 4183f7e7
+            widget: string
+          - hint: 'Original text: Merch, key: 46cb39f'
+            label: Text
+            name: 46cb39f
+            widget: string
+          - hint: 'Original text: Interviews, key: 186f3b32'
+            label: Text
+            name: 186f3b32
+            widget: string
+          - hint: 'Original text: Artists, key: 3791a1ec'
+            label: Text
+            name: 3791a1ec
+            widget: string
+          - hint: 'Original text: Print Editions, key: -75002d38'
+            label: Text
+            name: '-75002d38'
+            widget: string
+          - hint: 'Original text: History, key: -6587838c'
+            label: Text
+            name: '-6587838c'
+            widget: string
+          - hint: 'Original text: Posters, key: 4be744a6'
+            label: Text
+            name: 4be744a6
+            widget: string
+          - hint: 'Original text: Ephemera, key: -245a9f31'
+            label: Text
+            name: '-245a9f31'
+            widget: string
+          - hint: 'Original text: Donate, key: 7a59368f'
+            label: Text
+            name: 7a59368f
+            widget: string
+          - hint: 'Original text: Planned Giving, key: 3f9c81aa'
+            label: Text
+            name: 3f9c81aa
+            widget: string
+          - hint: 'Original text: Buy Art, key: 71baf189'
+            label: Text
+            name: 71baf189
+            widget: string
+          - hint: 'Original text: Seeking Funding, key: -7e87c4f9'
+            label: Text
+            name: '-7e87c4f9'
+            widget: string
+          - hint: 'Original text: Supporters, key: 523a9f57'
+            label: Text
+            name: 523a9f57
+            widget: string
+          - hint: 'Original text: Financials, key: b7d912a'
+            label: Text
+            name: b7d912a
+            widget: string
+          - hint: 'Original text: Hours, key: 42ad6ef'
+            label: Text
+            name: 42ad6ef
+            widget: string
+          - hint: "Original text: Getting\_Here, key: -303a13f4"
+            label: Text
+            name: '-303a13f4'
+            widget: string
+          - hint: 'Original text: Accessibility, key: 22eaf12e'
+            label: Text
+            name: 22eaf12e
+            widget: string
+          - hint: 'Original text: Studio Visits, key: 5a699a12'
+            label: Text
+            name: 5a699a12
+            widget: string
+          - hint: 'Original text: Wood Shop, key: a46bc89'
+            label: Text
+            name: a46bc89
+            widget: string
+          - hint: 'Original text: Print Shop, key: 7b920cc9'
+            label: Text
+            name: 7b920cc9
+            widget: string
+          - hint: 'Original text: Ceramics Studio, key: -75498147'
+            label: Text
+            name: '-75498147'
+            widget: string
+          - hint: 'Original text: FAQ, key: 10ef6'
+            label: Text
+            name: 10ef6
+            widget: string
+          - hint: 'Original text: Maker Space, key: 16f631ea'
+            label: Text
+            name: 16f631ea
+            widget: string
+          - hint: 'Original text: Critics Residency, key: -db09d87'
+            label: Text
+            name: '-db09d87'
+            widget: string
+          - hint: 'Original text: Residency Alumni, key: 37974104'
+            label: Text
+            name: '37974104'
+            widget: string
+          - hint: 'Original text: Current Residents, key: 2b7adafc'
+            label: Text
+            name: 2b7adafc
+            widget: string
+          - hint: 'Original text: Residency FAQ, key: -2aedf730'
+            label: Text
+            name: '-2aedf730'
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: Artist Projects, key: -7a658acd'
+            label: Text
+            name: '-7a658acd'
+            widget: string
+          - hint: >-
+              Original text: Sign-ups for our summer camps are open!, key:
+              5fa6ce2f
+            label: Text
+            name: 5fa6ce2f
+            widget: string
+          - hint: 'Original text: Enroll today, key: -7f277c99'
+            label: Text
+            name: '-7f277c99'
+            widget: string
+          - hint: 'Original text: Our educational values, key: -3470ce7d'
+            label: Text
+            name: '-3470ce7d'
+            widget: string
+          - hint: 'Original text: Social-emotional learning, key: -33c43188'
+            label: Text
+            name: '-33c43188'
+            widget: string
+          - hint: >-
+              Original text: All our programs are rooted in social-emotional
+              learning: an educational approach through which children and
+              adults understand and manage emotions, set and achieve positive
+              goals, feel and show empathy for others, establish and maintain
+              positive relationships, and make responsible decisions., key:
+              3fec8549
+            label: Text
+            name: 3fec8549
+            widget: text
+          - hint: 'Original text: Soft skills, key: -419b8728'
+            label: Text
+            name: '-419b8728'
+            widget: string
+          - hint: >-
+              Original text: Soft skills are nonacademic skills students acquire
+              to help them interact effectively and harmoniously with other
+              people. Our programs are focused on developing social-emotional,
+              critical thinking, and creative problem solving skills., key:
+              3616b6b6
+            label: Text
+            name: 3616b6b6
+            widget: text
+          - hint: 'Original text: Project-based learning, key: 5b30523f'
+            label: Text
+            name: 5b30523f
+            widget: string
+          - hint: >-
+              Original text: Project-based learning is a teaching method in
+              which students learn by actively engaging in real-world and
+              personally meaningful projects. Our approach centers on
+              challenging students with long-term projects that require
+              investigating and responding to authentic, engaging, and complex
+              questions and problems., key: 5d873b7b
+            label: Text
+            name: 5d873b7b
+            widget: text
+          - hint: 'Original text: Cross-age peer mentoring, key: -378ee8af'
+            label: Text
+            name: '-378ee8af'
+            widget: string
+          - hint: >-
+              Original text: Engaging with students over a long period of time
+              allows us to frame their learning as essentially community-based
+              and participatory. By offering older students the chance to serve
+              as mentors, we give younger students effective role models and
+              prompt mentors to think critically about how they can best pass on
+              what they’ve learned., key: 3d7e7639
+            label: Text
+            name: 3d7e7639
+            widget: text
+          - hint: 'Original text: Student-centered learning, key: 7d204ed8'
+            label: Text
+            name: 7d204ed8
+            widget: string
+          - hint: >-
+              Original text: We give learners the freedom to choose what to
+              study. We also prompt them to reflect on how and why their chosen
+              topic is of interest to them — and what other areas of inquiry it
+              might lead to., key: 7b8184c6
+            label: Text
+            name: 7b8184c6
+            widget: text
+          - hint: 'Original text: Exposure to diversity, key: -5cab43b3'
+            label: Text
+            name: '-5cab43b3'
+            widget: string
+          - hint: >-
+              Original text: We actively seek ways to introduce students to
+              diverse perspectives, and strive to make all our programs
+              accessible and enjoyable for any student that wants to learn from
+              us. We believe that exposure to diversity promotes creativity and
+              problem-solving skills., key: -48669505
+            label: Text
+            name: '-48669505'
+            widget: text
+          - hint: 'Original text: workbook, key: 21a117a'
+            label: Text
+            name: 21a117a
+            widget: string
+          - hint: 'Original text: Learn from home, key: 1b2a2c99'
+            label: Text
+            name: 1b2a2c99
+            widget: string
+          - hint: >-
+              Original text: Over the past year, we’ve been working with our
+              former artists-in-residence to create some education projects you
+              and your family can work on in your own home. , key: -400d1fa0
+            label: Text
+            name: '-400d1fa0'
+            widget: text
+          - hint: 'Original text: Art at Home: A Workbook, key: 18dc0fae'
+            label: Text
+            name: 18dc0fae
+            widget: string
+          - hint: >-
+              Original text: , which features print versions of some of those
+              lessons alongside several all-new art lessons. We sell about half
+              of each print run and give the rest away to students in local
+              schools — your purchase goes directly towards funding the next
+              batch of free books!, key: 7924cc4e
+            label: Text
+            name: 7924cc4e
+            widget: text
+          - hint: 'Original text: Text Link, key: 3610230d'
+            label: Text
+            name: 3610230d
+            widget: string
+          - hint: 'Original text: Online lessons, key: -8c9ea72'
+            label: Text
+            name: '-8c9ea72'
+            widget: string
+          - hint: 'Original text: Paper Mache with Nicole Dyer ->, key: 6374f6c1'
+            label: Text
+            name: 6374f6c1
+            widget: string
+          - hint: >-
+              Original text: Through the Portal with Ben Pinder ->, key:
+              -28b51c90
+            label: Text
+            name: '-28b51c90'
+            widget: string
+          - hint: 'Original text: Salon Walls with Kirstin Lamb ->, key: -51933dff'
+            label: Text
+            name: '-51933dff'
+            widget: string
+          - hint: >-
+              Original text: Experimental Drawing and Painting with Lisa
+              Iglesias ->, key: -3b7a0a82
+            label: Text
+            name: '-3b7a0a82'
+            widget: string
+          - hint: >-
+              Original text: Dimensional Portraits with Tiffany Lin ->, key:
+              -78d77f14
+            label: Text
+            name: '-78d77f14'
+            widget: string
+          - hint: >-
+              Original text: Mixed Media Portraits with Jamea Richmond-Edwards
+              ->, key: 7bd01a33
+            label: Text
+            name: 7bd01a33
+            widget: string
+          - hint: >-
+              Original text: Goo Workshop with Tamara Johnson and Trey Burns ->,
+              key: -3c65067d
+            label: Text
+            name: '-3c65067d'
+            widget: string
+          - hint: 'Original text: Three Portals with Saki Sato ->, key: 59ca4673'
+            label: Text
+            name: 59ca4673
+            widget: string
+          - hint: >-
+              Original text: Anthropomorphic Sculptures with Marianna Peragallo
+              →, key: -317bc707
+            label: Text
+            name: '-317bc707'
+            widget: string
+          - hint: >-
+              Original text: Dream Drawings with Maximilian Bode →, key:
+              -5e330157
+            label: Text
+            name: '-5e330157'
+            widget: string
+          - hint: 'Original text: The Art Nest, July 2018, key: 21f59d35'
+            label: Text
+            name: 21f59d35
+            widget: string
+          - hint: 'Original text: Photo by Verónica González Mayoral, key: 3803e743'
+            label: Text
+            name: '3803e743'
+            widget: string
+          - hint: 'Original text: The Art Nest, key: -5cb8bedc'
+            label: Text
+            name: '-5cb8bedc'
+            widget: string
+          - hint: >-
+              Original text: We look forward to welcoming you back to the Art
+              Nest soon! The drop-in friendly Art Nest is a free, welcoming art
+              space for children of all ages. Newly renovated, the Art Nest is
+              always stocked with a variety of art projects designed to inspire
+              and encourage creative play and exploration. It is open year-round
+              and features thoughtful projects, giving children and parents the
+              opportunity to explore new themes during each visit. We ask that
+              children under 10 years of age be accompanied by an adult., key:
+              -5f094d91
+            label: Text
+            name: '-5f094d91'
+            widget: text
+          - hint: 'Original text: @wassaicproject, key: -5a53a018'
+            label: Text
+            name: '-5a53a018'
+            widget: string
+          - hint: 'Original text: hello@wassaicproject.org, key: 5d9285cc'
+            label: Text
+            name: 5d9285cc
+            widget: string
+          - hint: 'Original text: © 2022 Wassaic Project, key: 7f4c9bff'
+            label: Text
+            name: 7f4c9bff
+            widget: string
+          - hint: 'Original text: Registered 501(c)3, key: -287021e3'
+            label: Text
+            name: '-287021e3'
+            widget: string
+          - hint: 'Original text: Get our weekly newsletter., key: -3c6ed90c'
+            label: Text
+            name: '-3c6ed90c'
+            widget: string
+          - hint: 'Original text: Thanks! Check your inbox., key: -13bb4c0b'
+            label: Text
+            name: '-13bb4c0b'
+            widget: string
+          - hint: >-
+              Original text: Something went wrong. Try again or email
+              hello@wassaicproject.org., key: 67baad5f
+            label: Text
+            name: 67baad5f
+            widget: string
+          - hint: 'Original text: (855) WASSAIC, key: -7d208476'
+            label: Text
+            name: '-7d208476'
+            widget: string
+          - hint: 'Original text: (855) 927-7242, key: 614b288f'
+            label: Text
+            name: 614b288f
+            widget: string
+          - hint: 'Original text: 37 Furnace Bank Road, key: -37a66120'
+            label: Text
+            name: '-37a66120'
+            widget: string
+          - hint: 'Original text: Wassaic, NY 12592, key: -64a20fe3'
+            label: Text
+            name: '-64a20fe3'
+            widget: string
+          - hint: 'Original text: Who We Are, key: -7dbf273c'
+            label: Text
+            name: '-7dbf273c'
+            widget: string
+          - hint: 'Original text: Co-Directors, key: -3e5d15ba'
+            label: Text
+            name: '-3e5d15ba'
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: Staff, key: 4c7d2c0'
+            label: Text
+            name: 4c7d2c0
+            widget: string
+          - hint: 'Original text: Board Members, key: -762d2a61'
+            label: Text
+            name: '-762d2a61'
+            widget: string
+          - hint: 'Original text: DONATE, key: 78873e6f'
+            label: Text
+            name: 78873e6f
+            widget: string
+          - hint: 'Original text: PLANNED GIVING, key: -3342ea76'
+            label: Text
+            name: '-3342ea76'
+            widget: string
+          - hint: 'Original text: BUY ART, key: 395ce989'
+            label: Text
+            name: 395ce989
+            widget: string
+          - hint: 'Original text: SEEKING FUNDING, key: -6795dcf9'
+            label: Text
+            name: '-6795dcf9'
+            widget: string
+          - hint: 'Original text: BENEFITS, key: -6cdd3144'
+            label: Text
+            name: '-6cdd3144'
+            widget: string
+          - hint: 'Original text: SUPPORTERS, key: -7ad50c9'
+            label: Text
+            name: '-7ad50c9'
+            widget: string
+          - hint: 'Original text: FINANCIALS, key: -4e6a5ef6'
+            label: Text
+            name: '-4e6a5ef6'
+            widget: string
+          - hint: >-
+              Original text: Your support goes towards a women-founded, fully
+              artist-run, community-based art organization that has, in the past
+              two years, supported hundreds of artists and facilitated an
+              uninterrupted program of high-quality cultural offerings in an
+              underserved area — all with a small but mighty staff and an
+              every-dollar-counts budget. You keep us doing the work we love in
+              (and for) the place we love., key: -709f1330
+            label: Text
+            name: '-709f1330'
+            widget: text
+          - hint: >-
+              Original text: As a 501(c)(3) nonprofit organization, we’re able
+              to accept planned gifts, including bequests, adding us to your
+              retirement account, or gifts of stock. Support like this allows us
+              to plan big, long-term projects, and ensures contemporary art has
+              a place in the Harlem Valley for decades to come., key: -3698c5fc
+            label: Text
+            name: '-3698c5fc'
+            widget: text
+          - hint: 'Original text: Learn more, key: -52aefc2f'
+            label: Text
+            name: '-52aefc2f'
+            widget: string
+          - hint: >-
+              Original text: Purchasing art from our exhibitions is the best way
+              to support us and our artists directly. 50% of each sale goes to
+              the artist, and 50% goes towards supporting our programming., key:
+              -7a41addb
+            label: Text
+            name: '-7a41addb'
+            widget: text
+          - hint: >-
+              Original text: Most of this art is available for sale in our ,
+              key: 5440ce7
+            label: Text
+            name: 5440ce7
+            widget: string
+          - hint: 'Original text: store, key: 68af8e1'
+            label: Text
+            name: 68af8e1
+            widget: string
+          - hint: >-
+              Original text: . For price lists or special inquiries, , key:
+              -331f1a60
+            label: Text
+            name: '-331f1a60'
+            widget: string
+          - hint: 'Original text: contact us., key: 2586550'
+            label: Text
+            name: '2586550'
+            widget: string
+          - hint: 'Original text: We''re seeking funding for:, key: 2be6fa7e'
+            label: Text
+            name: 2be6fa7e
+            widget: string
+          - hint: 'Original text: Capital improvements, key: -6e4685cb'
+            label: Text
+            name: '-6e4685cb'
+            widget: string
+          - hint: >-
+              Original text: As of 2020, we now own each of our buildings,
+              including Maxon Mills, Luther Barn, Gridley Chapel, and each of
+              our three residency houses., key: -366aec85
+            label: Text
+            name: '-366aec85'
+            widget: text
+          - hint: 'Original text: Free residencies, key: 1f6e91a4'
+            label: Text
+            name: 1f6e91a4
+            widget: string
+          - hint: >-
+              Original text: Our residency currently operates on a sliding
+              scale. To ensure equitable access to anyone who wants to come, our
+              goal is for our residency to be 100% free by 2025., key: -5bc52c77
+            label: Text
+            name: '-5bc52c77'
+            widget: text
+          - hint: 'Original text: Capital Improvements, key: -647b31ab'
+            label: Text
+            name: '-647b31ab'
+            widget: string
+          - hint: >-
+              Original text: As of 2019, we officially own Maxon Mills, Luther
+              Barn, and our residency houses., key: -74037604
+            label: Text
+            name: '-74037604'
+            widget: string
+          - hint: 'Original text: Staff salaries, key: -233d8ab8'
+            label: Text
+            name: '-233d8ab8'
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Suspendisse varius enim in eros elementum tristique. Duis
+              cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+              commodo diam libero vitae erat., key: -3910d286
+            label: Text
+            name: '-3910d286'
+            widget: text
+          - hint: 'Original text: Commissioning funds, key: -70c36c1b'
+            label: Text
+            name: '-70c36c1b'
+            widget: string
+          - hint: >-
+              Original text: We offer well over $100,000 in commissioning funds
+              artists in our exhibitions each year., key: ace0412
+            label: Text
+            name: ace0412
+            widget: string
+          - hint: 'Original text: Financial stability, key: 6faa58b2'
+            label: Text
+            name: 6faa58b2
+            widget: string
+          - hint: >-
+              Original text: As a young organization, we’re proud to be well on
+              our way to the kind of financial stability that’ll allow us to
+              serve artists for many years to come. We run on an
+              every-dollar-counts budget, but aspire to have six months
+              operating funds in cash on-hand in the near future., key: 4c6214b4
+            label: Text
+            name: 4c6214b4
+            widget: text
+          - hint: >-
+              Original text: We host two benefits per year: one in the summer,
+              one in the winter. Come party with us., key: -6545b818
+            label: Text
+            name: '-6545b818'
+            widget: string
+          - hint: >-
+              Original text: We're proud to receive support from:, key:
+              -3dc196cb
+            label: Text
+            name: '-3dc196cb'
+            widget: string
+          - hint: 'Original text: And hundreds of individual donors:, key: 3787d31d'
+            label: Text
+            name: 3787d31d
+            widget: string
+          - hint: >-
+              Original text: Abby Laufer & Tom Ferguson, Adam Eckstrom & Lauren
+              Was, Agnes Gund, Agostino & Susan Galluzzo, Alan & Kim Hartman,
+              Alan & Priscilla McCord, Alanna Heiss & Fredrick E. Sherman, Alex
+              & Pamela Dubitsky, Alexandra & Frederick Peters, Alexandra Lange,
+              Alexandra Tuller & Dean Temple, Allyn Chandler & Tim Johnson, Amy
+              & Vaughn Millette, Amy Benenson & Peter Lynfield, Amy Mellen,
+              Andrew Wilson, Angelik Vizcarrondo-Laboy, Angelina Lippert, Angie
+              Szani, Anita Haravon, Ann & Jack Gilpin, Ann Hatch, Ann Hutnick,
+              Ann Olsson, Anna McKeown, Anne Laumont, Anne Makepeace, Anne
+              Moore, Anne Sherman & Russel Langsam, Anne Strassner & Sandy
+              Feldman, Annette Cerbone & Suzanne LeVan, Annie Rolland & Lisa
+              Gamsu, Annika Mitic, Annika Tubito, Anthony & Charlotte
+              Champalimaud, Archie Gottesman & Gary Debode, Ashley & Ryan
+              Williams, Ashley & Stephen Prymas, Babette's Kitchen, Bank of
+              Millbrook, Barbara & Michael Zimmerman, Barbara Binswanger & Jim
+              Charlton, Barbara Perlov, Barclay Palmer & Dana Cowin, Barry &
+              Debra Frank, Barton & Debby Jones, Becca Kahn Bloch, Benjamin
+              Smeal & Diana White, Betsy Goldin, Bill & Kathy Weigel, Bill &
+              Rachel Schultz, Bill & Sharon Tingley, Billy & Maureen Auer, Blair
+              Brown & Dwight Lee, Blanche Benenson, Bob & Barbara Was, Borden &
+              Michele Walker, Bri & Jonathan Lowndes, Brian Distelberg, Bridget
+              Potter, Callie Siegel & Nate Guild, Cameron & Liza Smith, Carl
+              D'Alvia, Carly Eiseman, Caroline & Jason Klein, Caroline & Rick
+              Anderson, Caroline Maxwell, Carroll Dunham & Laurie Simmons,
+              Carroll MacDonald, Catherine & Evrand Fraise, Cathie Zusy & Sam
+              Kendall, Charles Manley & Victoria Kurtz, Charlotte Caldwell,
+              Charmaine Warren & Tony Turner, Chris Elia & Eric Simon, Christine
+              Armstrong & Benjamin Nickoll, Christine Arroyo, Christine Bates &
+              Peter Greenough, Christine Gaffney Franz & Fritz Franz,
+              Christopher & Alice Daniels, Christopher L. Mann, Christy Gast,
+              Chuck & Shelby Werner, Chuck Short & Chet Krayewski, Churchill
+              Building Company, Ciara Burnham, Cindy Pound, Claire Mahler,
+              Claire Ritz, Claire Weisz, Clem & Stephanie Benenson, Coco &
+              Timothy Quinlan, Cynthia Bittenfield, Cynthia Bower, Cynthia
+              Wilson, Cyrus Tingley & Taylor Burke, Damian & Britt Zunino,
+              Damian & Jeanne Gutierrez, Danny Binstock, Dave & Melinda
+              Anderson, David & Jessica Friedman, David & Lucy Ball, David &
+              Mabel Chung, David & Robyn Cutler Rosenberg, David Diamond & Karen
+              Zukowski, David Luther, David Rind, Dawn Learsy, Dawn Watson,
+              Debbie Cooper & Dan Sternberg, Deborah Murnin, Deborah Simon,
+              Denise Trapani, Deon Soogrim, Didi Barrett, Dina Shaulov-Wright,
+              Dolly Geary, Dominique Schulte & Darren Seirer, Donald & Susan
+              Brant, Donald Brown, Donna Moran, Dorothe Miller Bowron, Duncan
+              Smith & Katherine Lee, Dutchess Country Reality, Inc., Dylan
+              Parks, Ed Bergstraesser, Ed Epping & Peggy Diggs, Edie Greenwood,
+              Elieen Jeng Lynch, Elijah Miller, Eliza Myrie, Elizabeth Gilmore,
+              Elizabeth Volckening, Ellen & Casey Cogut, Ellen Baxter, Ellen
+              Schneider, Elyse Newman, Emilie & Joe Pryor, Emily Soell, Eric &
+              Holly Gleason, Eric Katzman, Eric Roberts, Erica Walsh, Erin & Sam
+              Bailey, Ermela Kaferi & Graham R. Spearman, Evan Van Hook & Liutas
+              Psibilskis, Faythe Levine, Federico de Vera, Fitzhugh Karol &
+              Lyndsay Caleo, Flora Biddle, Florence & Roger Liddell, Four
+              Brothers Pizza Inn, Fraleigh & Rackow Inc., Francis Greenburger,
+              Francis Hatch, Franklin Boyd, Fred & Lori Berliner, Frederick &
+              Judith Buechner, Frederick & Kathleen Godley, Gardner Murray, Gary
+              Schiro & Robert Burns, Gavin Berger, Genevieve Christy, Geoffrey
+              Biddle & Jane Gottesman, George McNeely, Georgina Schaeffer, Grace
+              Hager, Graham Klemm & Cody O'Kelly, Gretchen Parks & Robert
+              Monteleone, Heather & David Lombino, Helen & Donald Ross, Helen &
+              Edward Pardoe, Henninger & Jane Bullock, Henry Mathieu, Henry
+              Smedly & Kathy Chow, Henry Welt, Hermina Seiden, Herrington's,
+              Hugh Freund & Sandra Wijnberg, Hugh Hachmeister, Ian & Kim
+              Holback, Irene & Jack Banning, Irving Farm Coffee Co., Inc.,
+              Jack's Auto Service, Inc, Jaime Longhi, James & Kate Vick, James
+              Barron & Jeannette Montgomery Barron, Jane & David Spencer, Jane
+              Klein, Jane Vern & Mike Anderson, Janel Nockelby, Janet & David
+              Offensend, Janet Graaff, Jason Smith & Stephanie Miller, Sally
+              Morgan and Jay Lehman, Jeanine Tatlock, Jeff Livingston & Robbin
+              Blaine, Jeffrey Kimball & Pamela Hogan, Jeila Gueramian & Scott
+              Anderson, Jennifer Dowley, Jennifer Hand, Jennifer Schmidt, Jesse
+              & Mara Carrier, Jessica & Matt Harris, Jessica De Martine, Jessica
+              Holsey & Jeremy Smith, Jessie Frith, Jessie Grandgent-Stanley &
+              Andrew Stanley, Jillian Dunham & Michael Welt, Jim & Alice Hicks,
+              Jodi Dady, Jodie Lawton, Joe & Maura Collins, John & Carol
+              Santoleri, John & Gail Priber, John & Louise Lewis, John & Marilyn
+              Moller, John Angilillio, John Brett & Jane Strong, John Holmes,
+              John ONeill, John Pantazis, John Rockwell & Linda Mevorach, John
+              Spellman & Cynthia McCollum, Joseph Annino, Joseph Lazaro
+              Rodriguez & Demosthenes Lymberopoulos, Joshua Berson, Josie Merck,
+              Joy Brown, Julia & Braden Neff, Julia & Jeff Kivitz, Karen & John
+              Klopp, Karen & Tom Robards, Kaspar Heinrici, Kate Stiassni & Ned
+              Nunes, Katharine Homans & Patterson Sims, Katherine DiMatteo,
+              Katherine Freygang, Kathleen Hull, Kathleen Kucka, Kathy
+              McAuliffe, Kelly Gallagher, Ken & Helen Cowin, Ken Cooper &
+              Charmian Place, Kendra & Florent Lacroix, Kennedy Foods, DBA Jam,
+              Kevin & Sarah R. Shriver, Kevin Hogan & Tim Croak, Kevin Taylor,
+              Kirstin Lamb, Kit White & Andrea Barnet, Krista Fragos & James
+              Snyder, Kristen Schiele, Kristin Baker & Sam Kusack, Kyle
+              Hobratschk, Laura & Peter Rothschild, Lauren & Mark Booth, Lauren
+              Flack, Laurie Goldberger & Leslie Kogod, Laurie J. & Peter
+              Thomsen, Lawrence Wolfson, Leah & Bob Wilcox, Lee & Cynthia Vance,
+              Leslie & Nicholas Moore, Leslie Ekus, Libby & David Babbott-Klein,
+              Linda & Jack Gregory, Linda & James Quella, Linda Yowell & Richard
+              Zuckerman, Lisa Panzera, Lorie & David Broser, Louise & Lewis
+              Hart, Louise Lindenmeyr & Eliot Osborn, Low Road Foundation, Lucy
+              Phillips & Pierre Yared, Lynne Rudie, Madeline Walker, Marc
+              Trevino & Camille Orme, Margaret Wang, Margot Herzog, Mariana
+              Mogilevich, Marianne Petit, Mark & Marie Schwartz, Mark Kirby &
+              Erin Owens, Mark Kizelshteyn, Mary & Max Davidson, Mary & Philip
+              Oppenheimer, Mary Adams Lines, Mary Cesarz, Matthew Schnepf &
+              Munawar Ahmed, Maureen & Patrick Dore, Max Bode, Medora Bross
+              Geary & Jack Geary, Melissa Lazarov, Melissa Vogley Woods,
+              Meredith Kane, Michael & BZ Schwartz, Michael & Martha Nesbitt,
+              Michael & Vanessa Neithardt, Michael Demniak, Michael Hallows &
+              Lynn Perry, Michael Levin & Laurence de Segonzac, Michael Schenker
+              & Sue Rangeley, Michael Trapp, Michael Ward, Michael Zients &
+              Derek Larson, Michelles Miles, Mish Tworkowski & Joseph Singer,
+              Mitchell Klein, Molly Gochman & Michael Armilio, Nancy Hass,
+              Nevill & Karen Smythe, Nina Frankel, Nora Jordan & Walter Allen
+              Reiser, Olivia Berry & Wooley Pardoe, Pam & Tom White, Pat Heller,
+              Patricia Mayne, Patricia Rowell, Paul Balser & Paula Del Nunzio,
+              Paul Marantz & Julia Gray, Paul Outlaw & Jennifer Catron, Paul
+              Ricciardi & Jeff Mousseau, Paula Gottesman, Peggy McEnroe, Penny &
+              Frederic Putnam, Pete & Anne Putzel, Peter & Shirley Cohen, Peter
+              Canby & Anne Putnam, Peter Kwiatek, Phyllis Nauts, R. Justin
+              Stewart & Mamie Kanfer, Rachel Kaminsky, Rachel Tiven, Rachi
+              Grant, Raph & Courtney Posner, Raymond Learsy, Rebillard Public
+              Relations, Renee Price, Richard Berry & Lucy Commoner, Robby
+              Barnett & Susan M&ler, Robert Bloom, Robert Cutler, Robert Herzog,
+              Robert Maxwell, Roberta Gardner & Mike Elliston, Robin & David
+              Key, Robyn Wade, Rosemary Bair, Roxanne & Scott Bok, Rozann A.
+              Shackleton, Ruth & Phil Hicks, Ruth Freeman, Ryan Frank, Sally &
+              F. Anthony Zunino, Sally & John van Doren, Sally Gottesman, Sara
+              Blackwell, Sarah & David Stack, Sarah & Mike Barnett, Sarah Alice
+              Moran, Sarah Bacon, Sarah Sills & David Bragin, Sari Hochman,
+              Scott Clover & Michael Fiorentino, Season Evans, Shannon Finnegan,
+              Shari & Stephen Coats, Sharmistha Ray, Sharon Benenson Sydney,
+              Sheila Biddle, Shelly & Neil Mitchell, Sherri Miller, Sheryl
+              Winsby & Tom Gower, Simon & Kara Gerson, Solveig Berkman, Sophie &
+              &re Moura, Spencer Barksdale, Stancy DuHamel & Carolyn Handler,
+              Stark Biddle, Stephen Nislick & Linda Marcus, Steve & Shereen
+              Berger, Steve Callahan & R&y Dwenger, Steve Trevor & Stephanie
+              Hunt, Sung Eun Park, Susan & Dave Peterson, Susan & Peter Restler,
+              Susan & Stanley Trotman, Susan Edwards, Suzanne Hader & Michael
+              Johns, Suzanne Oliver, Tana & Richard Klebanow, Tanaya Apte &
+              Dylan Mattes, Taryn Matusik, Taylor Propane, Terry & Courtnay
+              Daniels, The Lantern Inn, Tilly Strauss & Michael Gellatly, Tim
+              Berlinghoff, Tom & Deban Flexner, Tom Goldenberg & Michelle
+              Alfandari, Torrie & Doug Larson, Trina & Fred Whitridge,
+              Troutbeck, Trudy & Harry Kramer, Valery Galasso & Nick Merrill,
+              Vanessa Wirth, Vicki & Mark Doyle, Vicky & Dennis Ross, Victor
+              Anselmi, Victoria Perotti, Wassaic Commons, Wassaic Fire
+              Department, Welsh Sanitation, Wendy & Paul Rapisarda, Wendy
+              Curtis, William Strong, Zélie & Andy Pforzheimer, key: -3790cb5c
+            label: Text
+            name: '-3790cb5c'
+            widget: text
+          - hint: 'Original text: Who, key: 1539e'
+            label: Text
+            name: 1539e
+            widget: string
+          - hint: 'Original text: Where, key: 4faccc7'
+            label: Text
+            name: 4faccc7
+            widget: string
+          - hint: 'Original text: When, key: 291f5a'
+            label: Text
+            name: 291f5a
+            widget: string
+          - hint: 'Original text: Cost, key: 2023ed'
+            label: Text
+            name: 2023ed
+            widget: string
+          - hint: 'Original text: Add to Calendar, key: 11fc3e44'
+            label: Text
+            name: 11fc3e44
+            widget: string
+          - hint: 'Original text: INTRODUCTION, key: -1a1cbfe6'
+            label: Text
+            name: '-1a1cbfe6'
+            widget: string
+          - hint: 'Original text: INTERVIEW, key: -3beb1e9f'
+            label: Text
+            name: '-3beb1e9f'
+            widget: string
+          - hint: 'Original text: ABOUT THE ARTIST, key: 63d46089'
+            label: Text
+            name: 63d46089
+            widget: string
+          - hint: 'Original text: Interview, key: -6a910e9f'
+            label: Text
+            name: '-6a910e9f'
+            widget: string
+          - hint: 'Original text: About the Artist, key: -4ebc0f77'
+            label: Text
+            name: '-4ebc0f77'
+            widget: string
+          - hint: 'Original text: All Artists, key: -625cd1b3'
+            label: Text
+            name: '-625cd1b3'
+            widget: string
+          - hint: 'Original text: Back to All, key: 1d43ef95'
+            label: Text
+            name: 1d43ef95
+            widget: string
+          - hint: 'Original text: That''s everyone!, key: -31978297'
+            label: Text
+            name: '-31978297'
+            widget: string
+          - hint: 'Original text: Next Artist, key: 62f3a914'
+            label: Text
+            name: 62f3a914
+            widget: string
+          - hint: 'Original text: All of us, key: 6664628'
+            label: Text
+            name: '6664628'
+            widget: string
+          - hint: 'Original text: Next Person, key: 7bd46522'
+            label: Text
+            name: 7bd46522
+            widget: string
+          - hint: 'Original text: UPCOMING EVENTS, key: -434f7363'
+            label: Text
+            name: '-434f7363'
+            widget: string
+          - hint: 'Original text: PAST EVENTS, key: -326d7719'
+            label: Text
+            name: '-326d7719'
+            widget: string
+          - hint: 'Original text: Filter by:, key: 1a28363b'
+            label: Text
+            name: 1a28363b
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: ON VIEW AND UPCOMING, key: 2805deff'
+            label: Text
+            name: 2805deff
+            widget: string
+          - hint: 'Original text: See the show, key: 643d4e99'
+            label: Text
+            name: 643d4e99
+            widget: string
+          - hint: 'Original text: Nina Cooke John, , key: -516c6e8c'
+            label: Text
+            name: '-516c6e8c'
+            widget: string
+          - hint: 'Original text: Point of Action, key: -1aa2adf1'
+            label: Text
+            name: '-1aa2adf1'
+            widget: string
+          - hint: 'Original text: Year-round, throughout Wassaic, key: -7e1fc6f4'
+            label: Text
+            name: '-7e1fc6f4'
+            widget: string
+          - hint: 'Original text: Button Text, key: -8fb26a5'
+            label: Text
+            name: '-8fb26a5'
+            widget: string
+          - hint: 'Original text: PAST, key: 255c12'
+            label: Text
+            name: 255c12
+            widget: string
+          - hint: 'Original text: INSTALL PHOTOS, key: 7904a2c6'
+            label: Text
+            name: 7904a2c6
+            widget: string
+          - hint: 'Original text: ABOUT THE ARTISTS, key: 16b7b0ea'
+            label: Text
+            name: 16b7b0ea
+            widget: string
+          - hint: 'Original text: Artist Installations, key: -46b8e7a0'
+            label: Text
+            name: '-46b8e7a0'
+            widget: string
+          - hint: 'Original text: Artist Name, key: -1395e43c'
+            label: Text
+            name: '-1395e43c'
+            widget: string
+          - hint: 'Original text: -, key: 2d'
+            label: Text
+            name: 2d
+            widget: string
+          - hint: 'Original text: About the Artists, key: 773a210a'
+            label: Text
+            name: 773a210a
+            widget: string
+          - hint: 'Original text: Bio +, key: 3d36ef3'
+            label: Text
+            name: 3d36ef3
+            widget: string
+          - hint: 'Original text: ARTIST INSTALLATIONS, key: 78f8c040'
+            label: Text
+            name: 78f8c040
+            widget: string
+          - hint: 'Original text: Style Guide, key: -7aba473'
+            label: Text
+            name: '-7aba473'
+            widget: string
+          - hint: 'Original text: Typography, key: 5500514f'
+            label: Text
+            name: 5500514f
+            widget: string
+          - hint: 'Original text: Heading, key: -6d5fea1e'
+            label: Text
+            name: '-6d5fea1e'
+            widget: string
+          - hint: 'Original text: Heading 2, key: 6af22974'
+            label: Text
+            name: 6af22974
+            widget: string
+          - hint: 'Original text: Heading 3, key: 6af22975'
+            label: Text
+            name: 6af22975
+            widget: string
+          - hint: 'Original text: Heading 4, key: 6af22976'
+            label: Text
+            name: 6af22976
+            widget: string
+          - hint: 'Original text: Banner Text, key: -11c4925f'
+            label: Text
+            name: '-11c4925f'
+            widget: string
+          - hint: 'Original text: Caption, key: -7bd7ce3a'
+            label: Text
+            name: '-7bd7ce3a'
+            widget: string
+          - hint: 'Original text: Breadcrumb, key: -4736f3dd'
+            label: Text
+            name: '-4736f3dd'
+            widget: string
+          - hint: 'Original text: Category, key: 6dd211e'
+            label: Text
+            name: 6dd211e
+            widget: string
+          - hint: 'Original text: Nav Link, key: 7d1b0d17'
+            label: Text
+            name: 7d1b0d17
+            widget: string
+          - hint: 'Original text: Filter, key: 7d6db798'
+            label: Text
+            name: 7d6db798
+            widget: string
+          - hint: 'Original text: Library Item, key: -5fa63468'
+            label: Text
+            name: '-5fa63468'
+            widget: string
+          - hint: 'Original text: Button, key: 77471352'
+            label: Text
+            name: '77471352'
+            widget: string
+          - hint: 'Original text: Event Date, key: -520fb24c'
+            label: Text
+            name: '-520fb24c'
+            widget: string
+          - hint: 'Original text: Event Description, key: 3e157336'
+            label: Text
+            name: '3e157336'
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Suspendisse varius enim in eros elementum tristique. Duis
+              cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+              commodo diam libero vitae erat. Aenean faucibus nibh et justo
+              cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
+              tristique posuere., key: -5286fc08
+            label: Text
+            name: '-5286fc08'
+            widget: text
+          - hint: 'Original text: Colors, key: 78a3a990'
+            label: Text
+            name: 78a3a990
+            widget: string
+          - hint: 'Original text: Elements, key: 35b2517'
+            label: Text
+            name: 35b2517
+            widget: string
+          - hint: 'Original text: ON VIEW, key: -25ee93ba'
+            label: Text
+            name: '-25ee93ba'
+            widget: string
+          - hint: 'Original text: Components, key: 5c265f36'
+            label: Text
+            name: 5c265f36
+            widget: string
+          - hint: 'Original text: Exhibition Card, key: -3159353f'
+            label: Text
+            name: '-3159353f'
+            widget: string
+          - hint: 'Original text: Exhibition Title, key: 725c8c7'
+            label: Text
+            name: 725c8c7
+            widget: string
+          - hint: 'Original text: Global Classes, key: 484ee8a9'
+            label: Text
+            name: 484ee8a9
+            widget: string
+          - hint: 'Original text: Top Border, key: -7fe5669'
+            label: Text
+            name: '-7fe5669'
+            widget: string
+          - hint: 'Original text: Mobile Top Border, key: 584257b5'
+            label: Text
+            name: 584257b5
+            widget: string
+          - hint: 'Original text: No Margin, key: 5d3520ed'
+            label: Text
+            name: 5d3520ed
+            widget: string
+          - hint: 'Original text: Centered Text, key: 6d977219'
+            label: Text
+            name: 6d977219
+            widget: string
+          - hint: 'Original text: 2em Padding Wrapper, key: -77116482'
+            label: Text
+            name: '-77116482'
+            widget: string
+          - hint: "Original text: 1-2-2-2em Padding\_Wrapper, key: 638e43ec"
+            label: Text
+            name: 638e43ec
+            widget: string
+          - hint: 'Original text: Margin Top (40px), key: 263dc6da'
+            label: Text
+            name: 263dc6da
+            widget: string
+          - hint: 'Original text: No Underline Link, key: 321a992d'
+            label: Text
+            name: 321a992d
+            widget: string
+          - hint: 'Original text: Margin Left (10px), key: -10d9fbf'
+            label: Text
+            name: '-10d9fbf'
+            widget: string
+          - hint: 'Original text: Border Right, key: 412dd28'
+            label: Text
+            name: 412dd28
+            widget: string
+          - hint: 'Original text: Margin Right (.5em), key: -3eb76e18'
+            label: Text
+            name: '-3eb76e18'
+            widget: string
+          - hint: 'Original text: Margin Right (1em), key: 5090cc62'
+            label: Text
+            name: 5090cc62
+            widget: string
+          - hint: 'Original text: Margin Bottom (40px), key: 58a0d0a0'
+            label: Text
+            name: 58a0d0a0
+            widget: string
+          - hint: 'Original text: Hidden, key: -7f2c7636'
+            label: Text
+            name: '-7f2c7636'
+            widget: string
+          - hint: 'Original text: Tag Highlight, key: -12a87892'
+            label: Text
+            name: '-12a87892'
+            widget: string
+          - hint: 'Original text: Red Text, key: -2e7af864'
+            label: Text
+            name: '-2e7af864'
+            widget: string
+          - hint: 'Original text: This text is red!, key: -620dc2eb'
+            label: Text
+            name: '-620dc2eb'
+            widget: string
+          - hint: >-
+              Original text: Apply to our Winter Residency by 3/22., key:
+              -1ade839d
+            label: Text
+            name: '-1ade839d'
+            widget: string
+          - hint: 'Original text: If not here, then where?, key: -9462ef9'
+            label: Text
+            name: '-9462ef9'
+            widget: string
+          - hint: >-
+              Original text: Apply to our Programming and Print Fellowships by
+              2/22, key: -2248c1d4
+            label: Text
+            name: '-2248c1d4'
+            widget: string
+          - hint: 'Original text: Cry me a river and paddle me home, key: -6382f5c1'
+            label: Text
+            name: '-6382f5c1'
+            widget: string
+          - hint: >-
+              Original text: RSVP to our Winter Benefit: March 5 at Tenmile
+              Distillery, key: -ea5d6fa
+            label: Text
+            name: '-ea5d6fa'
+            widget: string
+          - hint: 'Original text: Our 2022 Summer Exhibition, key: -2c0eb44e'
+            label: Text
+            name: '-2c0eb44e'
+            widget: string
+          - hint: 'Original text: May 5 to September 17, 2022, key: 205ab6e6'
+            label: Text
+            name: 205ab6e6
+            widget: string
+          - hint: 'Original text: Saturdays and Sundays, 12–5 PM, key: 5b792992'
+            label: Text
+            name: 5b792992
+            widget: string
+          - hint: 'Original text: EvenTS, key: 7c6cc939'
+            label: Text
+            name: 7c6cc939
+            widget: string
+          - hint: 'Original text: Summer Camps, key: 745cce61'
+            label: Text
+            name: 745cce61
+            widget: string
+          - hint: 'Original text: Sign up, key: -204ff442'
+            label: Text
+            name: '-204ff442'
+            widget: string
+          - hint: 'Original text: 2022 Haunted Mill Open Call, key: 1be84991'
+            label: Text
+            name: 1be84991
+            widget: string
+          - hint: 'Original text: Residency Overview, key: 53166fff'
+            label: Text
+            name: 53166fff
+            widget: string
+          - hint: 'Original text: Artist Residency, key: -1e5b6a7f'
+            label: Text
+            name: '-1e5b6a7f'
+            widget: string
+          - hint: >-
+              Original text: Our year-round residency program brings more than
+              100 artists to Wassaic each year. Artists work out of studios in
+              Luther Barn or Maxon Mills and live in one of three residency
+              houses in the heart of the hamlet., key: -32df00ab
+            label: Text
+            name: '-32df00ab'
+            widget: text
+          - hint: 'Original text: This year''s residents, key: -12efdaf2'
+            label: Text
+            name: '-12efdaf2'
+            widget: string
+          - hint: 'Original text: May, key: 12d45'
+            label: Text
+            name: 12d45
+            widget: string
+          - hint: 'Original text: Natalie Baxter, key: 639f9a0'
+            label: Text
+            name: 639f9a0
+            widget: string
+          - hint: 'Original text: Ayana Evans, key: 5b522cd1'
+            label: Text
+            name: 5b522cd1
+            widget: string
+          - hint: 'Original text: Tsedaye Makonnen, key: -1c16616e'
+            label: Text
+            name: '-1c16616e'
+            widget: string
+          - hint: 'Original text: June, key: 236862'
+            label: Text
+            name: '236862'
+            widget: string
+          - hint: 'Original text: LaTonia Allen, key: 16799e60'
+            label: Text
+            name: '16799e60'
+            widget: string
+          - hint: 'Original text: Taha Clayton, key: -1107d2a8'
+            label: Text
+            name: '-1107d2a8'
+            widget: string
+          - hint: 'Original text: Shaunte Gates, key: 65d5919e'
+            label: Text
+            name: 65d5919e
+            widget: string
+          - hint: 'Original text: Ryan Rasmussen, key: -1ef39297'
+            label: Text
+            name: '-1ef39297'
+            widget: string
+          - hint: 'Original text: July, key: 236838'
+            label: Text
+            name: '236838'
+            widget: string
+          - hint: 'Original text: Tatiana Arocha, key: -418dbb54'
+            label: Text
+            name: '-418dbb54'
+            widget: string
+          - hint: 'Original text: Kara Hearn, key: 47b5b665'
+            label: Text
+            name: 47b5b665
+            widget: string
+          - hint: 'Original text: Ayumi Ishii, key: 3032a097'
+            label: Text
+            name: 3032a097
+            widget: string
+          - hint: 'Original text: Ace Lehner, key: 7d2b47a9'
+            label: Text
+            name: 7d2b47a9
+            widget: string
+          - hint: 'Original text: William Miller, key: 669edb86'
+            label: Text
+            name: 669edb86
+            widget: string
+          - hint: 'Original text: Libby Paloma, key: -1ae2ccf4'
+            label: Text
+            name: '-1ae2ccf4'
+            widget: string
+          - hint: 'Original text: Sean Salstrom, key: -3f96084e'
+            label: Text
+            name: '-3f96084e'
+            widget: string
+          - hint: 'Original text: Joseph Smolinski, key: 199a0224'
+            label: Text
+            name: 199a0224
+            widget: string
+          - hint: 'Original text: Jessica Smolinski, key: -1fb5f11f'
+            label: Text
+            name: '-1fb5f11f'
+            widget: string
+          - hint: 'Original text: August, key: 758c5623'
+            label: Text
+            name: 758c5623
+            widget: string
+          - hint: 'Original text: Azikiwe Mohammed, key: -6566e542'
+            label: Text
+            name: '-6566e542'
+            widget: string
+          - hint: 'Original text: September, key: -18aeb4f'
+            label: Text
+            name: '-18aeb4f'
+            widget: string
+          - hint: 'Original text: Anja Schutz, key: -49aa43e1'
+            label: Text
+            name: '-49aa43e1'
+            widget: string
+          - hint: 'Original text: Chris Ulivo, key: -29923c1e'
+            label: Text
+            name: '-29923c1e'
+            widget: string
+          - hint: 'Original text: October, key: 292a6c0'
+            label: Text
+            name: 292a6c0
+            widget: string
+          - hint: 'Original text: Avital Burg, key: f6ff07d'
+            label: Text
+            name: f6ff07d
+            widget: string
+          - hint: |-
+              Original text: * Family residents
+                            , key: -578b7bd3
+            label: Text
+            name: '-578b7bd3'
+            widget: string
+          - hint: >-
+              Original text: Every month, we sit down with just about all of our
+              artists-in-residence for conversational interviews about their
+              practices, their lives, their time in Wassaic, and wherever else
+              the conversation takes us. We interview our exhibition artists,
+              too. The resulting profiles are a living record of who was here
+              and what they were thinking about during their stay in Wassaic.,
+              key: 664c89ef
+            label: Text
+            name: 664c89ef
+            widget: text
+          - hint: 'Original text: See all interviews, key: 79c0567e'
+            label: Text
+            name: 79c0567e
+            widget: string
+          - hint: >-
+              Original text: Sign up for our Art Scouts, Junior Varsity, and
+              Varsity Summer Camps!, key: -5ec6b819
+            label: Text
+            name: '-5ec6b819'
+            widget: string
+          - hint: 'Original text: Enroll today!, key: -65c81666'
+            label: Text
+            name: '-65c81666'
+            widget: string
+          - hint: >-
+              Original text: Interested in applying to one of our residency
+              programs?, key: 6337bc44
+            label: Text
+            name: 6337bc44
+            widget: string
+          - hint: 'Original text: May–October. Studios in Luther Barn., key: 5b638951'
+            label: Text
+            name: 5b638951
+            widget: string
+          - hint: >-
+              Original text: November–April. Studios in Maxon Mills., key:
+              -2c4c922b
+            label: Text
+            name: '-2c4c922b'
+            widget: string
+          - hint: >-
+              Original text: Year-round. Private housing, full participation.,
+              key: -59458906
+            label: Text
+            name: '-59458906'
+            widget: string
+          - hint: >-
+              Original text: Invitation-only printmaking in Luther Barn., key:
+              -531ebb70
+            label: Text
+            name: '-531ebb70'
+            widget: string
+          - hint: 'Original text: Our approach, key: 43f121c'
+            label: Text
+            name: 43f121c
+            widget: string
+          - hint: >-
+              Original text: Housed in historic buildings in upstate New York,
+              we offer artists the two things they need most early in their
+              careers: time and space. Residents aren’t required to produce
+              anything while they’re here. If they just need to spend a month
+              reading, hanging out with the horses, and drawing, great. If they
+              want to attempt their most ambitious piece yet, also great., key:
+              -5feb6fb9
+            label: Text
+            name: '-5feb6fb9'
+            widget: text
+          - hint: >-
+              Original text: We see the residency as the beginning of a
+              relationship. After their residencies, artists often come back
+              just a few months later to show in our exhibitions. We also
+              introduce them to our collector base, commission them for public
+              art, work with them on education programs, and invite them to
+              serve as visiting artists or review panelists for future residency
+              cohorts., key: -ad2cec1
+            label: Text
+            name: '-ad2cec1'
+            widget: text
+          - hint: >-
+              Original text: All of this feeds back into the hamlet. Our
+              residents live and work alongside one another in the middle of
+              Wassaic (not behind a gate), and we're proud that over the years
+              more than a few of our artist alumni have moved to the area. It’s
+              a residency of and for Wassaic, not just in it., key: 64777afc
+            label: Text
+            name: 64777afc
+            widget: text
+          - hint: >-
+              Original text: Group and one-on-one visits with creative
+              professionals, 2–3 times per month., key: -1ed7c7bf
+            label: Text
+            name: '-1ed7c7bf'
+            widget: string
+          - hint: 'Original text: Fellowships, key: 38ca1550'
+            label: Text
+            name: 38ca1550
+            widget: string
+          - hint: 'Original text: Full and partial available., key: -3fb74802'
+            label: Text
+            name: '-3fb74802'
+            widget: string
+          - hint: 'Original text: In Luther Barn. Open in summer., key: -4d71a2ee'
+            label: Text
+            name: '-4d71a2ee'
+            widget: string
+          - hint: 'Original text: At Maxon Mills. Open year-round., key: -25193d27'
+            label: Text
+            name: '-25193d27'
+            widget: string
+          - hint: 'Original text: Tags:, key: 4cd5f21'
+            label: Text
+            name: 4cd5f21
+            widget: string
+          - hint: 'Original text: Year:, key: 5158f7d'
+            label: Text
+            name: 5158f7d
+            widget: string
+          - hint: 'Original text: 2022, key: 1774fe'
+            label: Text
+            name: 1774fe
+            widget: string
+          - hint: 'Original text: Link 1, key: -78547655'
+            label: Text
+            name: '-78547655'
+            widget: string
+          - hint: 'Original text: Link 2, key: -78547654'
+            label: Text
+            name: '-78547654'
+            widget: string
+          - hint: 'Original text: Link 3, key: -78547653'
+            label: Text
+            name: '-78547653'
+            widget: string
+          - hint: 'Original text: What is this?, key: 6f25e0a7'
+            label: Text
+            name: 6f25e0a7
+            widget: string
+          - hint: >-
+              Original text: Elsewhere on this site, we've tried to present a
+              coherent story about what the Wassaic Project is and has been. But
+              thousands of artists, students, and visitors have passed through
+              Wassaic over the years, and the experience has meant something
+              different to each one of them. The interviews, projects, artworks,
+              photos, and materials presented here are meant to allow for that
+              same process of meaning-making. If you think we're missing
+              something, , key: -7a5e0f88
+            label: Text
+            name: '-7a5e0f88'
+            widget: text
+          - hint: 'Original text: email us, key: 2d5d45a2'
+            label: Text
+            name: 2d5d45a2
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: 'Original text: Search, key: -6ca0ae38'
+            label: Text
+            name: '-6ca0ae38'
+            widget: string
+          - hint: 'Original text: FACILITIES, key: 3ce70e81'
+            label: Text
+            name: 3ce70e81
+            widget: string
+          - hint: 'Original text: PROGRAMMING, key: -43650b47'
+            label: Text
+            name: '-43650b47'
+            widget: string
+          - hint: 'Original text: TIMELINE/REVIEW, key: 40fece6'
+            label: Text
+            name: 40fece6
+            widget: string
+          - hint: 'Original text: COST/AID, key: 155353da'
+            label: Text
+            name: 155353da
+            widget: string
+          - hint: 'Original text: RESIDENTS LIST, key: 1ced59b'
+            label: Text
+            name: 1ced59b
+            widget: string
+          - hint: 'Original text: APPLY, key: 3b98b4e'
+            label: Text
+            name: 3b98b4e
+            widget: string
+          - hint: 'Original text: May–October, key: 4adaf392'
+            label: Text
+            name: 4adaf392
+            widget: string
+          - hint: 'Original text: Facilities, key: -6931015f'
+            label: Text
+            name: '-6931015f'
+            widget: string
+          - hint: >-
+              Original text: Summer residents work out of 200–300 square foot
+              studios in the Luther Barn: a historic livestock barn (built in
+              1875) in the heart of town. They have 24-hour access to their
+              studios, our , key: -66fe0081
+            label: Text
+            name: '-66fe0081'
+            widget: text
+          - hint: 'Original text: print shop, key: 4cebc89'
+            label: Text
+            name: 4cebc89
+            widget: string
+          - hint: 'Original text: , our , key: 4d0c65c8'
+            label: Text
+            name: 4d0c65c8
+            widget: string
+          - hint: 'Original text: wood shop, key: -6d1cd777'
+            label: Text
+            name: '-6d1cd777'
+            widget: string
+          - hint: 'Original text: , and our , key: 49089071'
+            label: Text
+            name: '49089071'
+            widget: string
+          - hint: 'Original text: ceramics studio, key: -3412547'
+            label: Text
+            name: '-3412547'
+            widget: string
+          - hint: >-
+              Original text: All residents live just a short walk away in one of
+              our three residency houses, the Schoolhouse, the Lodge, and the
+              HVA, where accommodations include a private bedroom, shared living
+              room/study, dining room, kitchen, and bathrooms., key: -46a0ca26
+            label: Text
+            name: '-46a0ca26'
+            widget: text
+          - hint: 'Original text: Programming, key: -604ef747'
+            label: Text
+            name: '-604ef747'
+            widget: string
+          - hint: >-
+              Original text: Two to three times per month, creative
+              professionals will visit to give short lectures on their work and
+              make one-on-one studio visits with our residents. Our embedded
+              critics, Adam and Lauren of , key: -63de82c3
+            label: Text
+            name: '-63de82c3'
+            widget: text
+          - hint: 'Original text: Ghost of a Dream, key: 7ec0546c'
+            label: Text
+            name: 7ec0546c
+            widget: string
+          - hint: >-
+              Original text: , lead monthly group studio visits, while
+              Co-Director , key: -4392abbc
+            label: Text
+            name: '-4392abbc'
+            widget: string
+          - hint: 'Original text: Eve Biddle, key: 3e8b3acc'
+            label: Text
+            name: 3e8b3acc
+            widget: string
+          - hint: 'Original text: , Residency Director , key: 2157ea5a'
+            label: Text
+            name: 2157ea5a
+            widget: string
+          - hint: 'Original text: Will Hutnick, key: -9d56964'
+            label: Text
+            name: '-9d56964'
+            widget: string
+          - hint: 'Original text: , and Communications Coordinator , key: 45774416'
+            label: Text
+            name: '45774416'
+            widget: string
+          - hint: 'Original text: Joe Brommel, key: -22b3bfba'
+            label: Text
+            name: '-22b3bfba'
+            widget: string
+          - hint: >-
+              Original text:  make one-on-one studio visits with residents. All
+              residents are also invited to participate in a monthly evening of
+              artist’s talks and presentations, and are encouraged to be
+              available on the last Saturday of every month to participate in
+              our Open Studios program., key: -37145d70
+            label: Text
+            name: '-37145d70'
+            widget: text
+          - hint: 'Original text: Studio visits, key: -6efb520e'
+            label: Text
+            name: '-6efb520e'
+            widget: string
+          - hint: 'Original text: Timeline + Review, key: -5844a614'
+            label: Text
+            name: '-5844a614'
+            widget: string
+          - hint: >-
+              Original text: Our summer residency open call is generally open
+              from January–February., key: -16b4f6f
+            label: Text
+            name: '-16b4f6f'
+            widget: string
+          - hint: >-
+              Original text: Applicants are evaluated by a review panel composed
+              of our , key: -eeefae5
+            label: Text
+            name: '-eeefae5'
+            widget: string
+          - hint: 'Original text: , , key: 574'
+            label: Text
+            name: '574'
+            widget: string
+          - hint: 'Original text: Residency Director, key: 4227d612'
+            label: Text
+            name: 4227d612
+            widget: string
+          - hint: >-
+              Original text: , and professionals in the field. Residents are
+              selected based on the quality of their work, commitment to their
+              practice, and ability to engage with the community at large., key:
+              -6c34065f
+            label: Text
+            name: '-6c34065f'
+            widget: text
+          - hint: 'Original text: More about our review panel, key: -5ab90332'
+            label: Text
+            name: '-5ab90332'
+            widget: string
+          - hint: 'Original text: Cost + Aid, key: 146751b4'
+            label: Text
+            name: 146751b4
+            widget: string
+          - hint: 'Original text: Sliding scale, from $0–900. , key: 333939ce'
+            label: Text
+            name: 333939ce
+            widget: string
+          - hint: >-
+              Original text: We also offer 10+ fellowships per year, which
+              include a no-fee residency plus an honorariums. The actual cost of
+              the residency is $5,000 per month. Most of this is covered by the
+              generous support of donors and grants, but we recommend a
+              contribution of $900 per month per person from artists who are
+              able to pay., key: 109dd9f4
+            label: Text
+            name: 109dd9f4
+            widget: text
+          - hint: 'Original text: More on how we fund our programs, key: 4b70fc32'
+            label: Text
+            name: 4b70fc32
+            widget: string
+          - hint: 'Original text: 2022 Summer Residents, key: 4c2cbcd4'
+            label: Text
+            name: 4c2cbcd4
+            widget: string
+          - hint: 'Original text: Lizzie Gill, key: -f62adb7'
+            label: Text
+            name: '-f62adb7'
+            widget: string
+          - hint: 'Original text: Samantha Greenfeld, key: -75bd98c5'
+            label: Text
+            name: '-75bd98c5'
+            widget: string
+          - hint: 'Original text: Pete Hillstrom, key: -2e85ce4c'
+            label: Text
+            name: '-2e85ce4c'
+            widget: string
+          - hint: 'Original text: Luis Edgar Mejicanos, key: 30ac43e9'
+            label: Text
+            name: 30ac43e9
+            widget: string
+          - hint: 'Original text: Polly Shindler, key: -c3bfe8b'
+            label: Text
+            name: '-c3bfe8b'
+            widget: string
+          - hint: 'Original text: Open studios 5/21, key: -4c828ece'
+            label: Text
+            name: '-4c828ece'
+            widget: string
+          - hint: 'Original text: Jordan Buschur, key: -1bbd73a'
+            label: Text
+            name: '-1bbd73a'
+            widget: string
+          - hint: 'Original text: Mary Boo Anderson, key: 1c26a431'
+            label: Text
+            name: 1c26a431
+            widget: string
+          - hint: 'Original text: Julia Curran, key: -68fedd3a'
+            label: Text
+            name: '-68fedd3a'
+            widget: string
+          - hint: 'Original text: Shannon Finnegan, key: -11ad70f9'
+            label: Text
+            name: '-11ad70f9'
+            widget: string
+          - hint: 'Original text: Dan Gunn, key: 60a66e9d'
+            label: Text
+            name: 60a66e9d
+            widget: string
+          - hint: 'Original text: Kyle Kogut, key: -6d5f1897'
+            label: Text
+            name: '-6d5f1897'
+            widget: string
+          - hint: 'Original text: David LaSpina, key: 5e2df1fe'
+            label: Text
+            name: 5e2df1fe
+            widget: string
+          - hint: 'Original text: Alejandro Macias, key: -6a91ffb8'
+            label: Text
+            name: '-6a91ffb8'
+            widget: string
+          - hint: 'Original text: Katrina Majkut, key: -407b8e74'
+            label: Text
+            name: '-407b8e74'
+            widget: string
+          - hint: 'Original text: Maya Varadaraj, key: 4b32e520'
+            label: Text
+            name: 4b32e520
+            widget: string
+          - hint: 'Original text: Lauren Ruth, key: 65ba15fc'
+            label: Text
+            name: 65ba15fc
+            widget: string
+          - hint: 'Original text: Melissa Vogley Woods, key: 1e236b4c'
+            label: Text
+            name: 1e236b4c
+            widget: string
+          - hint: 'Original text: Open studios 6/25, key: -4c821a6b'
+            label: Text
+            name: '-4c821a6b'
+            widget: string
+          - hint: 'Original text: Adinah Dancyger, key: -3d1bdf82'
+            label: Text
+            name: '-3d1bdf82'
+            widget: string
+          - hint: 'Original text: Lizzy De Vita, key: 22aac2fb'
+            label: Text
+            name: 22aac2fb
+            widget: string
+          - hint: 'Original text: Josias Figueirido, key: -26c5fdf6'
+            label: Text
+            name: '-26c5fdf6'
+            widget: string
+          - hint: 'Original text: Sarah Greenbaum, key: -2f681a7b'
+            label: Text
+            name: '-2f681a7b'
+            widget: string
+          - hint: 'Original text: Katie Kaplan, key: 4b30fd25'
+            label: Text
+            name: 4b30fd25
+            widget: string
+          - hint: 'Original text: Susan Klein, key: -275d6d59'
+            label: Text
+            name: '-275d6d59'
+            widget: string
+          - hint: 'Original text: Mike Marks, key: -30de5964'
+            label: Text
+            name: '-30de5964'
+            widget: string
+          - hint: 'Original text: Farwah Rizvi, key: 4ee92e1d'
+            label: Text
+            name: 4ee92e1d
+            widget: string
+          - hint: 'Original text: Jeanette Spicer, key: -70f847c4'
+            label: Text
+            name: '-70f847c4'
+            widget: string
+          - hint: 'Original text: Emma Steinkraus, key: 4b2771b3'
+            label: Text
+            name: 4b2771b3
+            widget: string
+          - hint: 'Original text: Open studios 7/23, key: -4c81a60e'
+            label: Text
+            name: '-4c81a60e'
+            widget: string
+          - hint: 'Original text: Nana YaaSerwaah Akuoku, key: 548dbabc'
+            label: Text
+            name: 548dbabc
+            widget: string
+          - hint: 'Original text: Mark Fleuridor, key: -741b0419'
+            label: Text
+            name: '-741b0419'
+            widget: string
+          - hint: 'Original text: Chelsea Flowers, key: 42870f1b'
+            label: Text
+            name: 42870f1b
+            widget: string
+          - hint: 'Original text: Jazmine Hayes, key: 60d9af64'
+            label: Text
+            name: 60d9af64
+            widget: string
+          - hint: 'Original text: Rachel Kaly, key: 640d8be8'
+            label: Text
+            name: 640d8be8
+            widget: string
+          - hint: 'Original text: Na''ye Perez, key: -489b1eee'
+            label: Text
+            name: '-489b1eee'
+            widget: string
+          - hint: 'Original text: Sarah Shebaro, key: 32437317'
+            label: Text
+            name: '32437317'
+            widget: string
+          - hint: 'Original text: Jennifer White-Johnson, key: -7b7fd4b8'
+            label: Text
+            name: '-7b7fd4b8'
+            widget: string
+          - hint: 'Original text: Open studios 8/20, key: -4c8131b2'
+            label: Text
+            name: '-4c8131b2'
+            widget: string
+          - hint: 'Original text: Nicole Banowetz, key: -1925deec'
+            label: Text
+            name: '-1925deec'
+            widget: string
+          - hint: 'Original text: Ryan Davis, key: -5a5aa3e9'
+            label: Text
+            name: '-5a5aa3e9'
+            widget: string
+          - hint: 'Original text: Iris Hamers, key: -2aada501'
+            label: Text
+            name: '-2aada501'
+            widget: string
+          - hint: 'Original text: Lexy Ho-Tai, key: 4c37325c'
+            label: Text
+            name: 4c37325c
+            widget: string
+          - hint: 'Original text: Krysti Keener, key: 577445da'
+            label: Text
+            name: 577445da
+            widget: string
+          - hint: 'Original text: Catherine Pasquarelli, key: -3f5ef404'
+            label: Text
+            name: '-3f5ef404'
+            widget: string
+          - hint: 'Original text: Marianna Peragallo, key: -232e5284'
+            label: Text
+            name: '-232e5284'
+            widget: string
+          - hint: 'Original text: Qin Tan, key: 76238597'
+            label: Text
+            name: '76238597'
+            widget: string
+          - hint: 'Original text: Janet Wang, key: 149d891d'
+            label: Text
+            name: 149d891d
+            widget: string
+          - hint: 'Original text: Open studios 9/17, key: -4c80bd6b'
+            label: Text
+            name: '-4c80bd6b'
+            widget: string
+          - hint: 'Original text: Matthew Cronin, key: 5f93564d'
+            label: Text
+            name: 5f93564d
+            widget: string
+          - hint: 'Original text: Eric Garcia, key: 1fa269c'
+            label: Text
+            name: 1fa269c
+            widget: string
+          - hint: 'Original text: Dana Robinson, key: 3aee4ed8'
+            label: Text
+            name: 3aee4ed8
+            widget: string
+          - hint: 'Original text: Yuli Sung, key: bec61c2'
+            label: Text
+            name: bec61c2
+            widget: string
+          - hint: >-
+              Original text: No open studios — we’ll be prepping for the Haunted
+              Mill!, key: 10474ec1
+            label: Text
+            name: 10474ec1
+            widget: string
+          - hint: 'Original text: See all artist alumni, key: 78d4b10b'
+            label: Text
+            name: 78d4b10b
+            widget: string
+          - hint: 'Original text: Learn how to apply!, key: -b7a5514'
+            label: Text
+            name: '-b7a5514'
+            widget: string
+          - hint: 'Original text: Search results, key: 7e85e19e'
+            label: Text
+            name: 7e85e19e
+            widget: string
+          - hint: >-
+              Original text: We have an untraditional approach to public art. As
+              a non-collecting organization, we offer artists commissioning
+              funds to make their work, which is then displayed for a limited
+              time before returning to the artists. This is in contrast to most
+              institutions, who purchase works to display permanently., key:
+              -6032ef05
+            label: Text
+            name: '-6032ef05'
+            widget: text
+          - hint: >-
+              Original text: The boundaries of our public art program are
+              porous. Sometimes, we receive grants to fund individual public
+              artworks. Other times, artists will propose outdoor installations
+              for our exhibitions., key: -46c09c0b
+            label: Text
+            name: '-46c09c0b'
+            widget: text
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /events, key: 694cc208'
+            label: Link
+            name: 694cc208
+            widget: string
+          - hint: 'Original link: /exhibitions, key: 7b5100f5'
+            label: Link
+            name: 7b5100f5
+            widget: string
+          - hint: 'Original link: /education, key: -37d8d3a7'
+            label: Link
+            name: '-37d8d3a7'
+            widget: string
+          - hint: 'Original link: /residency, key: 58161fcb'
+            label: Link
+            name: 58161fcb
+            widget: string
+          - hint: 'Original link: /about, key: 55b8e8be'
+            label: Link
+            name: 55b8e8be
+            widget: string
+          - hint: 'Original link: /visit, key: 56e4127c'
+            label: Link
+            name: 56e4127c
+            widget: string
+          - hint: 'Original link: /library, key: 1c3f61ac'
+            label: Link
+            name: 1c3f61ac
+            widget: string
+          - hint: 'Original link: https://store.wassaicproject.org, key: -244bbc66'
+            label: Link
+            name: '-244bbc66'
+            widget: string
+          - hint: 'Original link: /support, key: -5c364340'
+            label: Link
+            name: '-5c364340'
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=Workshops, key:
+              142c0b71
+            label: Link
+            name: 142c0b71
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=Artist+Talks, key:
+              4c2b781e
+            label: Link
+            name: 4c2b781e
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=Open+Studios, key:
+              -677c7ac9
+            label: Link
+            name: '-677c7ac9'
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=benefits, key:
+              -1cb799a9
+            label: Link
+            name: '-1cb799a9'
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=virtual, key:
+              61f0b810
+            label: Link
+            name: 61f0b810
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=residency, key:
+              -26c03921
+            label: Link
+            name: '-26c03921'
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/events?tags=education, key:
+              4950d36d
+            label: Link
+            name: 4950d36d
+            widget: string
+          - hint: >-
+              Original link:
+              https://wassaic-project.webflow.io/exhibitions#past-exhibitions,
+              key: -40ca32bb
+            label: Link
+            name: '-40ca32bb'
+            widget: string
+          - hint: 'Original link: /summer-residency, key: -4b584f55'
+            label: Link
+            name: '-4b584f55'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.wassaicproject.org/education/paper-mache-with-nic-dyer,
+              key: -24b1a2c6
+            label: Link
+            name: '-24b1a2c6'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.wassaicproject.org/education/through-the-portal, key:
+              5c97ce62
+            label: Link
+            name: 5c97ce62
+            widget: string
+          - hint: 'Original link: #planned-giving, key: -555ead66'
+            label: Link
+            name: '-555ead66'
+            widget: string
+          - hint: 'Original link: #buy-art, key: 4251dd19'
+            label: Link
+            name: 4251dd19
+            widget: string
+          - hint: 'Original link: #seeking-funding, key: 770d8817'
+            label: Link
+            name: 770d8817
+            widget: string
+          - hint: 'Original link: #benefits, key: -5627f421'
+            label: Link
+            name: '-5627f421'
+            widget: string
+          - hint: 'Original link: #supporters, key: 36ad339a'
+            label: Link
+            name: 36ad339a
+            widget: string
+          - hint: 'Original link: #financials, key: -100fda93'
+            label: Link
+            name: '-100fda93'
+            widget: string
+          - hint: >-
+              Original link: https://www.wassaicproject.org/donate, key:
+              2558e3fa
+            label: Link
+            name: 2558e3fa
+            widget: string
+          - hint: 'Original link: https://www.eventbrite.com/e/-, key: 6f208abd'
+            label: Link
+            name: 6f208abd
+            widget: string
+          - hint: >-
+              Original link:
+              https://calndr.link/d/event/?service=google&start=&end=&title=&timezone=EST,
+              key: 7e926380
+            label: Link
+            name: '7e926380'
+            widget: string
+          - hint: 'Original link: #introduction, key: -851c443'
+            label: Link
+            name: '-851c443'
+            widget: string
+          - hint: 'Original link: #interview, key: -7bf8b742'
+            label: Link
+            name: '-7bf8b742'
+            widget: string
+          - hint: 'Original link: #about-the-artist, key: 60a23086'
+            label: Link
+            name: 60a23086
+            widget: string
+          - hint: 'Original link: #artist-installations, key: -50f07dea'
+            label: Link
+            name: '-50f07dea'
+            widget: string
+          - hint: 'Original link: #artists, key: 8222c89'
+            label: Link
+            name: 8222c89
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.wassaicproject.org/artists/artist-profiles/list/natalie-baxter,
+              key: 6a3f9731
+            label: Link
+            name: 6a3f9731
+            widget: string
+          - hint: 'Original link: https://www.ayanaevans.com/, key: 69db539d'
+            label: Link
+            name: 69db539d
+            widget: string
+          - hint: 'Original link: https://www.tsedaye.com/, key: 337a3213'
+            label: Link
+            name: 337a3213
+            widget: string
+          - hint: 'Original link: http://latoniaallen.com/, key: -735be1ca'
+            label: Link
+            name: '-735be1ca'
+            widget: string
+          - hint: 'Original link: http://www.nataliebaxter.com/, key: -4153864b'
+            label: Link
+            name: '-4153864b'
+            widget: string
+          - hint: 'Original link: https://www.shauntegates.com/, key: -52ba61c'
+            label: Link
+            name: '-52ba61c'
+            widget: string
+          - hint: 'Original link: http://www.ryanjrasmussen.com/, key: 2b5859d4'
+            label: Link
+            name: 2b5859d4
+            widget: string
+          - hint: 'Original link: https://www.tatianaarocha.com/, key: 5db05c52'
+            label: Link
+            name: 5db05c52
+            widget: string
+          - hint: 'Original link: https://karahearn.com/, key: -3231aff0'
+            label: Link
+            name: '-3231aff0'
+            widget: string
+          - hint: 'Original link: http://www.ayumiishii.com/, key: 2fcf954e'
+            label: Link
+            name: 2fcf954e
+            widget: string
+          - hint: 'Original link: http://ace-lehner.com/, key: -658c484c'
+            label: Link
+            name: '-658c484c'
+            widget: string
+          - hint: 'Original link: https://www.williammillerphoto.com/, key: -716d8cb0'
+            label: Link
+            name: '-716d8cb0'
+            widget: string
+          - hint: 'Original link: http://libbypaloma.com/about, key: -6bcaae5d'
+            label: Link
+            name: '-6bcaae5d'
+            widget: string
+          - hint: 'Original link: http://www.seansalstrom.com/, key: 65c6a0e3'
+            label: Link
+            name: 65c6a0e3
+            widget: string
+          - hint: 'Original link: https://www.smolinskistudio.com/, key: 1212cc17'
+            label: Link
+            name: 1212cc17
+            widget: string
+          - hint: >-
+              Original link: https://www.jessicaedithsmolinski.com/, key:
+              3c24efbf
+            label: Link
+            name: 3c24efbf
+            widget: string
+          - hint: 'Original link: https://artlordz-blog.tumblr.com/, key: -4b1c53d0'
+            label: Link
+            name: '-4b1c53d0'
+            widget: string
+          - hint: 'Original link: https://azikiwephoto.com/, key: -4f1c14e9'
+            label: Link
+            name: '-4f1c14e9'
+            widget: string
+          - hint: 'Original link: http://anjaschutz.com/, key: -50656dbd'
+            label: Link
+            name: '-50656dbd'
+            widget: string
+          - hint: 'Original link: https://christopherulivo.com/, key: f12e6b9'
+            label: Link
+            name: f12e6b9
+            widget: string
+          - hint: 'Original link: https://www.avitalburg.com/, key: 5be3bdc3'
+            label: Link
+            name: 5be3bdc3
+            widget: string
+          - hint: 'Original link: #facilities, key: 7b4192e4'
+            label: Link
+            name: 7b4192e4
+            widget: string
+          - hint: 'Original link: #programming, key: 4990fcd6'
+            label: Link
+            name: 4990fcd6
+            widget: string
+          - hint: 'Original link: #timeline-review, key: -6e2a381f'
+            label: Link
+            name: '-6e2a381f'
+            widget: string
+          - hint: 'Original link: #cost-aid, key: 2bf91c5f'
+            label: Link
+            name: 2bf91c5f
+            widget: string
+          - hint: 'Original link: #residents, key: -1b5b2ba0'
+            label: Link
+            name: '-1b5b2ba0'
+            widget: string
+          - hint: >-
+              Original link: https://www.wassaicproject.org/print-shop, key:
+              1b9cca21
+            label: Link
+            name: 1b9cca21
+            widget: string
+          - hint: >-
+              Original link: https://www.wassaicproject.org/wood-shop, key:
+              5a8250ab
+            label: Link
+            name: 5a8250ab
+            widget: string
+          - hint: >-
+              Original link: https://www.wassaicproject.org/ceramics-studio,
+              key: 7107cfdb
+            label: Link
+            name: 7107cfdb
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.wassaicproject.org/artists/about/who-we-are/#co-directors,
+              key: -154cc6f2
+            label: Link
+            name: '-154cc6f2'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.wassaicproject.org/about/who-we-are/will-hutnick, key:
+              2b2b8fed
+            label: Link
+            name: 2b2b8fed
+            widget: string
+          - hint: 'Original link: http://www.lizziegill.com/, key: 424c8278'
+            label: Link
+            name: 424c8278
+            widget: string
+          - hint: 'Original link: http://www.samanthagreenfeld.com/, key: -2d681b14'
+            label: Link
+            name: '-2d681b14'
+            widget: string
+          - hint: 'Original link: https://www.petehillstrom.com/, key: -23cf2d86'
+            label: Link
+            name: '-23cf2d86'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.instagram.com/luisedgarmejicanos/?hl=en, key:
+              -23f09e35
+            label: Link
+            name: '-23f09e35'
+            widget: string
+          - hint: 'Original link: https://pollyshindlerpainting.com/, key: 3c1de95e'
+            label: Link
+            name: 3c1de95e
+            widget: string
+          - hint: 'Original link: http://www.jordanbuschur.com/, key: -42942a19'
+            label: Link
+            name: '-42942a19'
+            widget: string
+          - hint: 'Original link: http://www.marybooanderson.com/, key: -cf3cb30'
+            label: Link
+            name: '-cf3cb30'
+            widget: string
+          - hint: 'Original link: http://www.juliacurranprints.com/, key: 2d61bea7'
+            label: Link
+            name: 2d61bea7
+            widget: string
+          - hint: 'Original link: http://shannonfinnegan.com/, key: -2b4d4af'
+            label: Link
+            name: '-2b4d4af'
+            widget: string
+          - hint: 'Original link: http://www.dangunn.com/, key: 1b453e26'
+            label: Link
+            name: 1b453e26
+            widget: string
+          - hint: 'Original link: http://www.kylekogut.com/, key: -59622eb6'
+            label: Link
+            name: '-59622eb6'
+            widget: string
+          - hint: 'Original link: https://www.davidlaspina.com/, key: 66670ea0'
+            label: Link
+            name: 66670ea0
+            widget: string
+          - hint: 'Original link: https://www.alexmaciasart.com/, key: -b6764f7'
+            label: Link
+            name: '-b6764f7'
+            widget: string
+          - hint: 'Original link: http://www.katrinamajkut.com/, key: 41b07d89'
+            label: Link
+            name: 41b07d89
+            widget: string
+          - hint: 'Original link: http://www.m-vara.com/, key: 525c1299'
+            label: Link
+            name: 525c1299
+            widget: string
+          - hint: 'Original link: http://www.lauren-ruth.com/, key: 4288e9c'
+            label: Link
+            name: 4288e9c
+            widget: string
+          - hint: 'Original link: https://www.melissavogleywoods.com/, key: 111b65ae'
+            label: Link
+            name: 111b65ae
+            widget: string
+          - hint: 'Original link: http://www.adinahdancyger.com/, key: 37a4b677'
+            label: Link
+            name: 37a4b677
+            widget: string
+          - hint: 'Original link: http://lizzydevita.us/, key: -6574ae72'
+            label: Link
+            name: '-6574ae72'
+            widget: string
+          - hint: >-
+              Original link: http://josiasfigueirido.com/about-me/, key:
+              -6e9c1a2f
+            label: Link
+            name: '-6e9c1a2f'
+            widget: string
+          - hint: 'Original link: http://sarahgreenbaum.com/, key: 3f72f41b'
+            label: Link
+            name: 3f72f41b
+            widget: string
+          - hint: 'Original link: http://katiekaplanstudio.com/, key: 378f495f'
+            label: Link
+            name: 378f495f
+            widget: string
+          - hint: 'Original link: https://susankleinart.com/home.html, key: 20ea6f67'
+            label: Link
+            name: 20ea6f67
+            widget: string
+          - hint: 'Original link: http://www.mikemarksarts.com/, key: 2cff9ac5'
+            label: Link
+            name: 2cff9ac5
+            widget: string
+          - hint: 'Original link: https://www.farwahrizvi.com/, key: -6229a0ed'
+            label: Link
+            name: '-6229a0ed'
+            widget: string
+          - hint: 'Original link: https://www.jeanettespicer.com/, key: -6d91ba36'
+            label: Link
+            name: '-6d91ba36'
+            widget: string
+          - hint: 'Original link: https://www.emmasteinkraus.com/, key: 1e27fbcb'
+            label: Link
+            name: 1e27fbcb
+            widget: string
+          - hint: 'Original link: http://www.hausofyba.com/, key: -16730545'
+            label: Link
+            name: '-16730545'
+            widget: string
+          - hint: 'Original link: https://markfleuridor.com/contact, key: 54e75a82'
+            label: Link
+            name: 54e75a82
+            widget: string
+          - hint: 'Original link: http://chelseaaflowers.com/, key: -6b1ee2ac'
+            label: Link
+            name: '-6b1ee2ac'
+            widget: string
+          - hint: >-
+              Original link: http://www.jazminehayesart.com/bloodline, key:
+              3fab3694
+            label: Link
+            name: 3fab3694
+            widget: string
+          - hint: 'Original link: https://www.rachelkaly.com/press, key: -50cfb795'
+            label: Link
+            name: '-50cfb795'
+            widget: string
+          - hint: 'Original link: http://www.sshebaro.com/, key: 63ae9c1a'
+            label: Link
+            name: 63ae9c1a
+            widget: string
+          - hint: 'Original link: http://jenwhitejohnson.com/, key: 1587b93d'
+            label: Link
+            name: 1587b93d
+            widget: string
+          - hint: 'Original link: http://www.nicolebanowetz.com/, key: 79d43c1f'
+            label: Link
+            name: 79d43c1f
+            widget: string
+          - hint: 'Original link: http://ryandavistheartist.com/, key: -3b239e3f'
+            label: Link
+            name: '-3b239e3f'
+            widget: string
+          - hint: 'Original link: http://irishelenahamers.de/, key: cbd4580'
+            label: Link
+            name: cbd4580
+            widget: string
+          - hint: 'Original link: http://lexymakesthings.com/, key: 7e5487be'
+            label: Link
+            name: 7e5487be
+            widget: string
+          - hint: 'Original link: http://www.krystikeener.com/, key: df0e06d'
+            label: Link
+            name: df0e06d
+            widget: string
+          - hint: 'Original link: http://catepasquarelli.com/, key: 918d962'
+            label: Link
+            name: 918d962
+            widget: string
+          - hint: 'Original link: https://www.mariannaperagallo.com/, key: -5272b7e4'
+            label: Link
+            name: '-5272b7e4'
+            widget: string
+          - hint: 'Original link: https://www.qintan.net/, key: -357b08d1'
+            label: Link
+            name: '-357b08d1'
+            widget: string
+          - hint: 'Original link: http://janetwang.com/, key: -331873db'
+            label: Link
+            name: '-331873db'
+            widget: string
+          - hint: 'Original link: http://cronin.info/info, key: -63e8607a'
+            label: Link
+            name: '-63e8607a'
+            widget: string
+          - hint: 'Original link: http://ericjgarcia.com/, key: -450d5598'
+            label: Link
+            name: '-450d5598'
+            widget: string
+          - hint: 'Original link: http://www.danarobinsonstudio.com/, key: 67e769a5'
+            label: Link
+            name: 67e769a5
+            widget: string
+          - hint: 'Original link: http://y-sung.com/, key: 214efb9b'
+            label: Link
+            name: 214efb9b
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: 2453da7b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 61f80c58
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-208f6db'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-9e934f1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-185a5db8'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-29ec899e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 764dc831
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 317f733b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-234fb6b0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 36672a3d
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-22c14932'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5adf0b67'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 17ad5e51
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-13b67448'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3ac7e850
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-29e75532'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-72a92318'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-29607bc'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7740bf4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 15ea6e31
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1d3dc154
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4c70050
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-15bf7f6c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5258012f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '44094e89'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2dc8d493'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-64631c8d'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: ba01b8e
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4efbc23e'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5e87f348
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5e5820b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 78b3567
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 2bd5addd
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+      - label: eCommerce
+        name: ecommerce
+        file: cms/_data/settings/ecommerce.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: eCommerce
+          - label: Currencies and Formats
+            name: currencies_and_formats
+            widget: object
+            fields:
+              - hint: >-
+                  Template used to format the price, you can use following
+                  placeholders: {amount}, {currencyCode}, {symbol}
+                name: template
+                label: Price Template
+                widget: string
+                required: true
+              - hint: Character to divide decimals
+                name: decimal
+                label: Decimal
+                widget: string
+                required: true
+              - hint: Character to group amount
+                name: group
+                label: Group
+                widget: string
+                required: true
+              - hint: Number of fraction digits
+                name: fractionDigits
+                label: Fraction Digits
+                widget: number
+                required: true
+                value_type: int
+              - hint: Hide decimals for whole prices
+                name: hideDecimalForWholeNumbers
+                label: Hide decimals
+                widget: boolean
+                required: false
+              - hint: ''
+                name: currencies
+                label: Currencies
+                widget: list
+                required: true
+                min: 1
+                fields:
+                  - hint: Currency Code (3 char) all lowercase
+                    name: currencyCode
+                    label: Currency Code
+                    widget: string
+                    required: true
+                  - hint: ''
+                    name: symbol
+                    label: Symbol
+                    widget: string
+                    required: true
+          - label: Snipcart
+            name: snipcart
+            widget: object
+            fields:
+              - hint: Public Api Key
+                name: apiKey
+                label: Api Key
+                widget: string
+                required: true
+          - label: Snipcart Style
+            name: css
+            widget: object
+            fields:
+              - hint: 'Original Font Family: Open Sans,sans-serif'
+                name: main-font
+                label: Main font
+                widget: string
+                required: true
+              - hint: 'Original Font Family: Montserrat,sans-serif'
+                name: heading-font
+                label: Heading font
+                widget: string
+                required: true
+              - hint: 'Original color: #f7f7f8'
+                name: bgColor-alt
+                label: BgColor alt
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-badge
+                label: BgColor badge
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fceae8'
+                name: bgColor-buttonDanger-active
+                label: BgColor buttonDanger active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fceae8'
+                name: bgColor-buttonDanger-focus
+                label: BgColor buttonDanger focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fdefed'
+                name: bgColor-buttonDanger-hover
+                label: BgColor buttonDanger hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: bgColor-buttonPrimary
+                label: BgColor buttonPrimary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: bgColor-buttonPrimary-active
+                label: BgColor buttonPrimary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: bgColor-buttonPrimary-focus
+                label: BgColor buttonPrimary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: bgColor-buttonPrimary-hover
+                label: BgColor buttonPrimary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e7f6fe'
+                name: bgColor-buttonSecondary-active
+                label: BgColor buttonSecondary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #ecf8fe'
+                name: bgColor-buttonSecondary-focus
+                label: BgColor buttonSecondary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #ecf8fe'
+                name: bgColor-buttonSecondary-hover
+                label: BgColor buttonSecondary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-default
+                label: BgColor default
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-input
+                label: BgColor input
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: bgColor-input-checked
+                label: BgColor input checked
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #f1f2f4'
+                name: bgColor-input-disabled
+                label: BgColor input disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-input-focus
+                label: BgColor input focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: bgColor-input-hover
+                label: BgColor input hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: bgColor-link
+                label: BgColor link
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #d9f0fc'
+                name: bgColor-link-focus
+                label: BgColor link focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #f1f2f4'
+                name: bgColor-modal
+                label: BgColor modal
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-badge
+                label: BorderColor badge
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-badge-active
+                label: BorderColor badge active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-badge-disabled
+                label: BorderColor badge disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger
+                label: BorderColor buttonDanger
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonDanger-active
+                label: BorderColor buttonDanger active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-disabled
+                label: BorderColor buttonDanger disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-error
+                label: BorderColor buttonDanger error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-focus
+                label: BorderColor buttonDanger focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-hover
+                label: BorderColor buttonDanger hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonDanger-success
+                label: BorderColor buttonDanger success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary
+                label: BorderColor buttonPrimary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonPrimary-active
+                label: BorderColor buttonPrimary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary-disabled
+                label: BorderColor buttonPrimary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonPrimary-error
+                label: BorderColor buttonPrimary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary-focus
+                label: BorderColor buttonPrimary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonPrimary-hover
+                label: BorderColor buttonPrimary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonPrimary-success
+                label: BorderColor buttonPrimary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary
+                label: BorderColor buttonSecondary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-buttonSecondary-active
+                label: BorderColor buttonSecondary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-disabled
+                label: BorderColor buttonSecondary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-error
+                label: BorderColor buttonSecondary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-focus
+                label: BorderColor buttonSecondary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-hover
+                label: BorderColor buttonSecondary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: transparent'
+                name: borderColor-buttonSecondary-success
+                label: BorderColor buttonSecondary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-default
+                label: BorderColor default
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-input
+                label: BorderColor input
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: borderColor-input-checked
+                label: BorderColor input checked
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: borderColor-input-disabled
+                label: BorderColor input disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: borderColor-input-error
+                label: BorderColor input error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: borderColor-input-focus
+                label: BorderColor input focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0aa7f5'
+                name: borderColor-input-hover
+                label: BorderColor input hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link
+                label: BorderColor link
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link-active
+                label: BorderColor link active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link-focus
+                label: BorderColor link focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-link-hover
+                label: BorderColor link hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: currentColor'
+                name: borderColor-success
+                label: BorderColor success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-alt
+                label: Color alt
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: color-badge
+                label: Color badge
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: color-badge-active
+                label: Color badge active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-badge-disabled
+                label: Color badge disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-buttonDanger
+                label: Color buttonDanger
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-buttonDanger-active
+                label: Color buttonDanger active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-buttonDanger-disabled
+                label: Color buttonDanger disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-buttonDanger-error
+                label: Color buttonDanger error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-buttonDanger-focus
+                label: Color buttonDanger focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-buttonDanger-hover
+                label: Color buttonDanger hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #29c768'
+                name: color-buttonDanger-success
+                label: Color buttonDanger success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary
+                label: Color buttonPrimary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-active
+                label: Color buttonPrimary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e3e6e8'
+                name: color-buttonPrimary-disabled
+                label: Color buttonPrimary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-error
+                label: Color buttonPrimary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-focus
+                label: Color buttonPrimary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-hover
+                label: Color buttonPrimary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-buttonPrimary-success
+                label: Color buttonPrimary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #133986'
+                name: color-buttonSecondary
+                label: Color buttonSecondary
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #133986'
+                name: color-buttonSecondary-active
+                label: Color buttonSecondary active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-buttonSecondary-disabled
+                label: Color buttonSecondary disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-buttonSecondary-error
+                label: Color buttonSecondary error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #133986'
+                name: color-buttonSecondary-focus
+                label: Color buttonSecondary focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-buttonSecondary-hover
+                label: Color buttonSecondary hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #29c768'
+                name: color-buttonSecondary-success
+                label: Color buttonSecondary success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-default
+                label: Color default
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #e85a4a'
+                name: color-error
+                label: Color error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-input
+                label: Color input
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #fff'
+                name: color-input-checked
+                label: Color input checked
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-input-disabled
+                label: Color input disabled
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #9e2215'
+                name: color-input-error
+                label: Color input error
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-input-focus
+                label: Color input focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-input-hover
+                label: Color input hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #8f99a3'
+                name: color-inputIcon
+                label: Color inputIcon
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #2e3338'
+                name: color-inputLabel
+                label: Color inputLabel
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-link
+                label: Color link
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-link-active
+                label: Color link active
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #1a4db3'
+                name: color-link-focus
+                label: Color link focus
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #0d59f2'
+                name: color-link-hover
+                label: Color link hover
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+              - hint: 'Original color: #29c768'
+                name: color-success
+                label: Color success
+                widget: color
+                required: true
+                enableAlpha: true
+                allowInput: true
+publish_mode: editorial_workflow
