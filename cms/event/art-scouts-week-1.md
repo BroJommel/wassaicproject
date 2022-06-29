@@ -3,7 +3,7 @@ f_location: Maxon Mills
 f_price: $250$150 for Webutuck and Dover Plains Students
 title: Art Scouts Week 1
 slug: art-scouts-week-1
-updated-on: '2022-06-28T19:30:41.052Z'
+updated-on: '2022-06-29T20:19:57.467Z'
 created-on: '2022-03-24T15:16:35.108Z'
 published-on: '2022-06-28T19:30:55.509Z'
 f_eventbrite-event-id: '294058445727'
@@ -21,7 +21,7 @@ f_tags:
 f_multi-date: true
 f_thumbnail:
   url: >-
-    https://uploads-ssl.webflow.com/60830ce4ff688682af02bb47/62bb56d96d592f2ab591fb62_wassaic-project-artist-stephen-morrison-dog-show-1-3.jpg
+    https://uploads-ssl.webflow.com/60830ce4ff688682af02bb47/62bcb3aecf97a8853c29dae5_wassaic-project-artist-stephen-morrison-dog-show-1.jpg
   alt: null
 layout: '[event].html'
 tags: event
