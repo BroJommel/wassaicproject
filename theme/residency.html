@@ -16,7 +16,10 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="announcement-banner gray">
@@ -34,7 +37,7 @@
     <div class="full-width-column w-col w-col-6">
       <a href="{{ links.-4b584f55 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper">
-          <div class="p-ratio__100"><img src="{{ images.-4efbc23e.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.-4efbc23e.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.-4efbc23e.url, images.-4efbc23e.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h2>{{ texts.-3d0c6c17 }}</h2>
             <p>{{ texts.5b638951 }}</p>
@@ -45,7 +48,7 @@
     <div class="full-width-column w-col w-col-6">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper mobile-top-border">
-          <div class="p-ratio__100"><img src="{{ images.5e87f348.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.5e87f348.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.5e87f348.url, images.5e87f348.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h2>{{ texts.7a65077f }}</h2>
             <p>{{ texts.-2c4c922b }}</p>
@@ -58,7 +61,7 @@
     <div class="full-width-column w-col w-col-6">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper">
-          <div class="p-ratio__100"><img src="{{ images.1d3dc154.url }}" loading="lazy" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" alt="{{ images.1d3dc154.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.1d3dc154.url, images.1d3dc154.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h2>{{ texts.-2888aea2 }}</h2>
             <p>{{ texts.-59458906 }}</p>
@@ -69,7 +72,7 @@
     <div class="full-width-column w-col w-col-6">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper mobile-top-border">
-          <div class="p-ratio__100"><img src="{{ images.5e5820b.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.5e5820b.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.5e5820b.url, images.5e5820b.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h2>{{ texts.-75002d38 }}</h2>
             <p>{{ texts.-531ebb70 }}</p>
@@ -81,7 +84,7 @@
   <div class="border-top wf-section">
     <div class="expandable-top">
       <div data-w-id="95003334-f21f-536d-854b-3774b9f60fbc" class="plus-and-minus-wrapper">
-        <h4>{{ texts.43f121c }}</h4><img src="{{ images.-29e75532.url }}" loading="lazy" width="25" style="display:block" alt="{{ images.-29e75532.alt | trim | escape }}" class="plus-sign"><img src="{{ images.-72a92318.url }}" loading="lazy" width="25" style="display:none" alt="{{ images.-72a92318.alt | trim | escape }}" class="minus-sign">
+        <h4>{{ texts.43f121c }}</h4>{%- image images.-29e75532.url, images.-29e75532.alt, '[]', 'loading="lazy" width="25" style="display:block" class="plus-sign"' -%}{%- image images.-72a92318.url, images.-72a92318.alt, '[]', 'loading="lazy" width="25" style="display:none" class="minus-sign"' -%}
       </div>
     </div>
     <div class="_1-2-2-2em-padding-wrapper expandable">
@@ -96,7 +99,7 @@
     <div class="full-width-column w-col w-col-6">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper">
-          <div class="p-ratio__100"><img src="{{ images.44094e89.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.44094e89.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.44094e89.url, images.44094e89.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h3>{{ texts.5a699a12 }}</h3>
             <p>{{ texts.-1ed7c7bf }}</p>
@@ -107,7 +110,7 @@
     <div class="full-width-column w-col w-col-6">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper mobile-top-border">
-          <div class="p-ratio__100"><img src="{{ images.36672a3d.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.36672a3d.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.36672a3d.url, images.36672a3d.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h3>{{ texts.38ca1550 }}</h3>
             <p>{{ texts.-3fb74802 }}</p>
@@ -120,7 +123,7 @@
     <div class="full-width-column w-col w-col-4">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper">
-          <div class="p-ratio__100"><img src="{{ images.78b3567.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;25vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 25vw" alt="{{ images.78b3567.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.78b3567.url, images.78b3567.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"25vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h3>{{ texts.a46bc89 }}</h3>
             <p>{{ texts.-4d71a2ee }}</p>
@@ -131,7 +134,7 @@
     <div class="full-width-column w-col w-col-4">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper mobile-top-border">
-          <div class="p-ratio__100"><img src="{{ images.-5258012f.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;25vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 25vw" alt="{{ images.-5258012f.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.-5258012f.url, images.-5258012f.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"25vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h3>{{ texts.7b920cc9 }}</h3>
             <p>{{ texts.-4d71a2ee }}</p>
@@ -142,7 +145,7 @@
     <div class="full-width-column w-col w-col-4">
       <a href="{{ links.23 }}" class="link-block w-inline-block">
         <div class="_2em-padding-wrapper">
-          <div class="p-ratio__100"><img src="{{ images.4c70050.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;25vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 25vw" alt="{{ images.4c70050.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__100">{%- image images.4c70050.url, images.4c70050.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"25vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="column-text-wrapper">
             <h3>{{ texts.-75498147 }}</h3>
             <p>{{ texts.-25193d27 }}</p>

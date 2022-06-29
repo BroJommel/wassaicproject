@@ -19,7 +19,10 @@
   <script async="" src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"></script>
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <main>
@@ -35,7 +38,7 @@
           {%- unless collection.length == 0 -%}<div role="list" class="_3-column-grid w-dyn-items">
             {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
               <a href="{{ item.url }}" class="card w-inline-block">
-                <div class="p-ratio__100"><img src="{{ item.data.f_image.url }}" loading="lazy" alt="{{ item.data.f_image.alt }}" class="ratio-image"></div>
+                <div class="p-ratio__100">{%- image item.data.f_image.url, item.data.f_image.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
                 <div class="card-title-wrapper">
                   <h4>{{ item.data.title }}</h4>
                   <div class="plain-text-link">{{ item.data.f_start-date-time | formatDate: "EEEE, MMMM d, yyyy" }}</div>
@@ -79,7 +82,7 @@
         {%- unless collection.length == 0 -%}<div fs-cmsnest-element="list" fs-cmsfilter-element="list" fs-cmsfilter-showquery="true" role="list" class="_3-column-grid w-dyn-items">
           {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
             <a href="{{ item.url }}" class="exhibition-card w-inline-block">
-              <div class="p-ratio__100"><img src="{{ item.data.f_image.url }}" loading="lazy" alt="{{ item.data.f_image.alt }}" class="ratio-image"></div>
+              <div class="p-ratio__100">{%- image item.data.f_image.url, item.data.f_image.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
               <div class="card-title-wrapper">
                 <h4 fs-cmsfilter-field="name">{{ item.data.title }}</h4>
                 <div fs-cmsfilter-field="year" class="plain-text-link">{{ item.data.f_start-date-time | formatDate: "MMMM d, yyyy" }}</div>

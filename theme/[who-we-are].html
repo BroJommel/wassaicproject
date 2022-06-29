@@ -17,13 +17,16 @@
   <script async="" src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsprevnext@1/cmsprevnext.js"></script>
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="w-layout-grid interview-introduction-grid">
     <div id="w-node-_1b4a90bc-74a4-f409-fe18-8a9b1e1f4a46-20edabfb" class="centered">
       <h1>{{ title }}</h1>
-      <h2>{{ f_job-title }}</h2><img src="{{ f_profile-picture.url }}" loading="lazy" alt="{{ f_profile-picture.alt }}">
+      <h2>{{ f_job-title }}</h2>{%- image f_profile-picture.url, f_profile-picture.alt, '[]', 'loading="lazy"' -%}
     </div>
   </div>
   <div class="full-interview-wrapper wf-section">
@@ -32,17 +35,17 @@
         <div class="w-richtext">{{ content | markdown }}</div>
       </div>
     </div>
-    {%- if f_photos -%}<div id="w-node-_5abe7850-eacf-575a-4d8d-c1f2b2827ae3-20edabfb" class="w-layout-grid image-slider-grid margin-bottom-40px margin-top-40px w-clearfix"><img src="{{ images.7740bf4.url }}" loading="lazy" alt="{{ images.7740bf4.alt | trim | escape }}" class="prev-slide"><img src="{{ images.2453da7b.url }}" loading="lazy" alt="{{ images.2453da7b.alt | trim | escape }}" class="next-slide">
+    {%- if f_photos -%}<div id="w-node-_5abe7850-eacf-575a-4d8d-c1f2b2827ae3-20edabfb" class="w-layout-grid image-slider-grid margin-bottom-40px margin-top-40px w-clearfix">{%- image images.7740bf4.url, images.7740bf4.alt, '[]', 'loading="lazy" class="prev-slide"' -%}{%- image images.2453da7b.url, images.2453da7b.alt, '[]', 'loading="lazy" class="next-slide"' -%}
       {%- assign setItems = f_photos -%}<div id="w-node-_1750e9ca-8ef0-0004-b8ac-3f696746ffd1-20edabfb" class="slider-wrapper w-dyn-list">
         {%- unless setItems.length == 0 -%}<div role="list" class="slider-list w-dyn-items">
-          {%- for setItem in setItems -%}<div role="listitem" class="slider-item w-dyn-item"><img src="{{ setItem.url }}" loading="lazy" alt="{{ setItem.alt }}" class="interview-image"></div>{%- endfor -%}
+          {%- for setItem in setItems -%}<div role="listitem" class="slider-item w-dyn-item">{%- image setItem.url, setItem.alt, '[]', 'loading="lazy" class="interview-image"' -%}</div>{%- endfor -%}
         </div>{%- endunless -%}
         {%- if setItems.length == 0 -%}<div class="w-dyn-empty">
           <div>{{ texts.3d503d2b }}</div>
         </div>{%- endif -%}
       <template><div id="w-node-_1750e9ca-8ef0-0004-b8ac-3f696746ffd1-20edabfb" class="slider-wrapper w-dyn-list">
         <div role="list" class="slider-list w-dyn-items">
-          <div role="listitem" class="slider-item w-dyn-item"><img src="{# setItem.url #}" loading="lazy" alt="{# setItem.alt #}" class="interview-image"></div>
+          <div role="listitem" class="slider-item w-dyn-item"></div>
         </div>
         <div class="w-dyn-empty">
           <div>{# texts.3d503d2b #}</div>

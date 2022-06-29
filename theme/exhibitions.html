@@ -16,7 +16,10 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="wf-section">
@@ -30,7 +33,7 @@
       {%- unless collection.length == 0 -%}<div role="list" class="w-dyn-items">
         {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
           <div>
-            <div class="p-ratio__3-2"><img data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;92vw&quot;}]" loading="lazy" src="{{ item.data.f_hero-image.url }}" alt="{{ item.data.f_hero-image.alt }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image item.data.f_hero-image.url, item.data.f_hero-image.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"92vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="rich-text-caption w-richtext">{{ item.templateContent | markdown | markdown }}</div>
             <div class="w-layout-grid text-button-12-column-grid">
               <div id="w-node-b2b9ae9a-8530-77a5-ed42-bd5b4f082cc7-44a8b419">
@@ -54,7 +57,7 @@
   <div class="_2em-padding-wrapper border-top">
     {%- include "partials/yellow-category" -%}
     <div>
-      <div class="p-ratio__3-2"><img src="{{ images.15ea6e31.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;92vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 92vw" alt="{{ images.15ea6e31.alt | trim | escape }}" class="ratio-image"></div>
+      <div class="p-ratio__3-2">{%- image images.15ea6e31.url, images.15ea6e31.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"92vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
     </div>
     <div class="rich-text-caption w-richtext">
       <p>{{ texts.-516c6e8c }}<em>{{ texts.-1aa2adf1 }}</em></p>
@@ -75,7 +78,7 @@
       {%- unless collection.length == 0 -%}<div role="list" class="exhibitions-grid w-dyn-items">
         {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
           <a href="{{ item.url }}" class="exhibition-card plain-text-link w-inline-block">
-            <div class="p-ratio__16-9"><img src="{{ item.data.f_hero-image.url }}" loading="lazy" alt="{{ item.data.f_hero-image-alt-text }}" class="ratio-image"></div>
+            <div class="p-ratio__16-9">{%- image item.data.f_hero-image.url, item.data.f_hero-image.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="card-title-wrapper">
               <h4>{{ item.data.title }}</h4>
               {%- if item.data.f_subtitle -%}<div class="body-copy-small">{{ item.data.f_subtitle }}</div>{%- endif -%}

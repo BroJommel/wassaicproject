@@ -14,20 +14,23 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="secondary-nav navbar">
     <a href="{{ links.-851c443 }}" class="nav-link secondary">{{ texts.-1a1cbfe6 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.-50f07dea }}" class="nav-link secondary">{{ texts.7904a2c6 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.8222c89 }}" class="nav-link secondary">{{ texts.16b7b0ea }}</a>
   </div>
   <div id="introduction" class="wf-section">
     <div class="_2em-padding-wrapper">
       <h1 class="centered-text">{{ title }}</h1>
-      {%- if f_subtitle -%}<h2 class="centered-text margin-top-20px">{{ f_subtitle }}</h2>{%- endif -%}<img src="{{ f_hero-image.url }}" loading="lazy" alt="{{ f_hero-image.alt }}" class="margin-top-20px">
+      {%- if f_subtitle -%}<h2 class="centered-text margin-top-20px">{{ f_subtitle }}</h2>{%- endif -%}{%- image f_hero-image.url, f_hero-image.alt, '[]', 'loading="lazy" class="margin-top-20px"' -%}
       <div class="w-layout-grid exhibition-intro-grid margin-top-40px">
         <div id="w-node-fe71a98b-dfa2-566d-3945-dbe38498e525-b7c80ef4">
           <div>{{ f_dates-1 }}</div>
@@ -52,7 +55,7 @@
       {%- assign collection = collections.artists | filter: "f_exhibitions,idin,DYN_CONTEXT", "ALL", page.inputPath | sort: "-created-on" -%}<div class="w-dyn-list">
         {%- unless collection.length == 0 -%}<div role="list" class="artists-grid w-dyn-items">
           {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
-            <div class="p-ratio__2-3"><img src="{{ item.data.f_portrait.url }}" loading="lazy" alt="{{ item.data.f_portrait.alt }}" class="ratio-image"></div>
+            <div class="p-ratio__2-3">{%- image item.data.f_portrait.url, item.data.f_portrait.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div>
               <h4 class="centered-text margin-top-20px">{{ item.data.title }}</h4>
               <h5 class="body-copy-small centered-text">{{ texts.3d36ef3 }}</h5>

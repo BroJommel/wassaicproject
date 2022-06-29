@@ -16,12 +16,15 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="_2em-padding-wrapper">
     <h1 class="centered-text">{{ texts.3c2336d }}</h1>
-    <div class="margin-top-40px"><img src="{{ images.36672a3d.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:2717,&quot;size&quot;:&quot;92vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;2500px&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 2717px) 92vw, 2500px" alt="{{ images.36672a3d.alt | trim | escape }}"></div>
+    <div class="margin-top-40px">{%- image images.36672a3d.url, images.36672a3d.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":2717,"size":"92vw"},{"max":10000,"size":"2500px"}]', 'loading="lazy"' -%}</div>
   </div>
   <div class="wf-section">
     <div class="_2em-padding-wrapper"></div>
@@ -36,7 +39,7 @@
         {%- unless collection.length == 0 -%}<div role="list" class="exhibitions-grid w-dyn-items">
           {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
             <a href="{{ item.url }}" class="card w-inline-block">
-              <div class="p-ratio__100"><img src="{{ item.data.f_profile-picture.url }}" loading="lazy" alt="{{ item.data.f_profile-picture.alt }}" class="ratio-image"></div>
+              <div class="p-ratio__100">{%- image item.data.f_profile-picture.url, item.data.f_profile-picture.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
               <div class="_1em-padding-wrapper centered">
                 <h4>{{ item.data.title }}</h4>
               </div>
@@ -54,7 +57,7 @@
         {%- unless collection.length == 0 -%}<div role="list" class="exhibitions-grid w-dyn-items">
           {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
             <a href="{{ item.url }}" class="card w-inline-block">
-              <div class="p-ratio__100"><img src="{{ item.data.f_profile-picture.url }}" loading="lazy" alt="{{ item.data.f_profile-picture.alt }}" class="ratio-image"></div>
+              <div class="p-ratio__100">{%- image item.data.f_profile-picture.url, item.data.f_profile-picture.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
               <div class="_1em-padding-wrapper centered">
                 <h4>{{ item.data.title }}</h4>
                 <h5 class="no-margin">{{ item.data.f_job-title }}</h5>
@@ -73,7 +76,7 @@
         {%- unless collection.length == 0 -%}<div role="list" class="exhibitions-grid w-dyn-items">
           {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
             <a href="{{ item.url }}" class="card w-inline-block">
-              <div class="p-ratio__100"><img src="{{ item.data.f_profile-picture.url }}" loading="lazy" alt="{{ item.data.f_profile-picture.alt }}" class="ratio-image"></div>
+              <div class="p-ratio__100">{%- image item.data.f_profile-picture.url, item.data.f_profile-picture.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
               <div class="_1em-padding-wrapper centered">
                 <h4>{{ item.data.title }}</h4>
                 {%- if item.data.f_job-title -%}<h5 class="no-margin">{{ item.data.f_job-title }}</h5>{%- endif -%}

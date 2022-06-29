@@ -17,7 +17,10 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body class="body">
   {%- include "partials/navbar" -%}
   {%- include "partials/horizontal-marquee" -%}
@@ -30,7 +33,7 @@
           {%- unless collection.length == 0 -%}<div role="list" class="w-dyn-items">
             {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
               <div>
-                <div class="p-ratio__3-2"><img data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;83vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;92vw&quot;}]" src="{{ item.data.f_hero-image.url }}" alt="{{ item.data.f_hero-image.alt }}" class="ratio-image"></div>
+                <div class="p-ratio__3-2">{%- image item.data.f_hero-image.url, item.data.f_hero-image.alt, '[{"max":479,"size":"83vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"92vw"}]', 'class="ratio-image"' -%}</div>
                 <div class="rich-text-caption w-richtext">{{ item.templateContent | markdown | markdown }}</div>
                 <div class="w-layout-grid text-button-12-column-grid">
                   <div id="w-node-df6e19a7-ab13-6ef6-1461-fb79881f5f96-75db9b38" class="div-block">
@@ -62,7 +65,7 @@
           {%- unless collection.length == 0 -%}<div role="list" class="slider-list is--events w-dyn-items">
             {%- for item in collection -%}<div data-w-id="27f7eeb4-0b42-ab8a-3dad-5d02ca94c9b1" role="listitem" class="slider-item is--events w-dyn-item">
               <a href="{{ links.23 }}" class="card w-inline-block">
-                <div class="p-ratio__100 is--events"><img height="100" loading="lazy" width="100" src="{{ item.data.f_thumbnail.url }}" alt="{{ item.data.f_thumbnail.alt }}" class="ratio-image"></div>
+                <div class="p-ratio__100 is--events">{%- image item.data.f_thumbnail.url, item.data.f_thumbnail.alt, '[]', 'height="100" loading="lazy" width="100" class="ratio-image"' -%}</div>
                 <div class="event-info">
                   <div class="event-date">{{ item.data.title }}</div>
                   <p class="eventcarddetails">{{ item.data.f_start-date-time | formatDate: "MMMM d, yyyy" }}</p>
@@ -98,7 +101,7 @@
       <section class="w-row">
         <div class="full-width-column w-col w-col-6">
           <div class="_2em-padding-wrapper">
-            <div class="p-ratio__3-2"><img src="{{ images.1d3dc154.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.1d3dc154.alt | trim | escape }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image images.1d3dc154.url, images.1d3dc154.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="column-text-wrapper">
               <h3>{{ texts.745cce61 }}</h3>
               <p>{{ texts.-5286fc08 }}</p>
@@ -108,7 +111,7 @@
         </div>
         <div class="full-width-column w-col w-col-6">
           <div class="_2em-padding-wrapper mobile-top-border">
-            <div class="p-ratio__3-2"><img src="{{ images.4c70050.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.4c70050.alt | trim | escape }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image images.4c70050.url, images.4c70050.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="column-text-wrapper">
               <h3>{{ texts.1be84991 }}</h3>
               <p>{{ texts.-5286fc08 }}</p>
@@ -120,24 +123,24 @@
     </div>
     <section class="section wf-section">
       <div class="_2em-padding-wrapper">
-        <div class="p-ratio__16-9"><img src="{{ images.36672a3d.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;92vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 92vw" alt="{{ images.36672a3d.alt | trim | escape }}" class="ratio-image"></div>
+        <div class="p-ratio__16-9">{%- image images.36672a3d.url, images.36672a3d.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"92vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
         <div class="w-layout-grid residency-links-grid">
           <div id="w-node-_79a5c8e6-d0fe-8b8e-38ef-35831bb1c8fd-75db9b38" class="residency-links-wrapper">
             <a href="{{ links.58161fcb }}" class="residency-links w-inline-block">
               <h4 id="w-node-_8578844f-5123-3fbb-d790-7f26778c7d85-75db9b38">{{ texts.53166fff }}</h4>
-              <div class="arrow-wrapper"><img src="{{ images.-15bf7f6c.url }}" loading="lazy" alt="{{ images.-15bf7f6c.alt | trim | escape }}" class="right-arrow"></div>
+              <div class="arrow-wrapper">{%- image images.-15bf7f6c.url, images.-15bf7f6c.alt, '[]', 'loading="lazy" class="right-arrow"' -%}</div>
             </a>
             <a href="{{ links.-4b584f55 }}" class="residency-links w-inline-block">
               <h4 id="w-node-ba57a003-c57f-d059-afc1-80d0af9d7b93-75db9b38">{{ texts.-3d0c6c17 }}</h4>
-              <div class="arrow-wrapper"><img src="{{ images.-15bf7f6c.url }}" loading="lazy" alt="{{ images.-15bf7f6c.alt | trim | escape }}" class="right-arrow"></div>
+              <div class="arrow-wrapper">{%- image images.-15bf7f6c.url, images.-15bf7f6c.alt, '[]', 'loading="lazy" class="right-arrow"' -%}</div>
             </a>
             <a href="{{ links.23 }}" class="residency-links w-inline-block">
               <h4 id="w-node-d1a90811-64ca-2777-7ec1-71db6e505fd5-75db9b38">{{ texts.7a65077f }}</h4>
-              <div class="arrow-wrapper"><img src="{{ images.-15bf7f6c.url }}" loading="lazy" alt="{{ images.-15bf7f6c.alt | trim | escape }}" class="right-arrow"></div>
+              <div class="arrow-wrapper">{%- image images.-15bf7f6c.url, images.-15bf7f6c.alt, '[]', 'loading="lazy" class="right-arrow"' -%}</div>
             </a>
             <a href="{{ links.23 }}" class="residency-links w-inline-block">
               <h4 id="w-node-_49614d9c-d60d-eeb9-531c-b31dce130f52-75db9b38">{{ texts.-2888aea2 }}</h4>
-              <div class="arrow-wrapper"><img src="{{ images.-15bf7f6c.url }}" loading="lazy" alt="{{ images.-15bf7f6c.alt | trim | escape }}" class="right-arrow"></div>
+              <div class="arrow-wrapper">{%- image images.-15bf7f6c.url, images.-15bf7f6c.alt, '[]', 'loading="lazy" class="right-arrow"' -%}</div>
             </a>
           </div>
           <div id="w-node-_2df0e1a0-aca1-2e9a-eaeb-f93ab11e11d2-75db9b38" class="details-wrapper">
@@ -150,7 +153,7 @@
     <section class="section wf-section">
       <div class="expandable-top">
         <div data-w-id="2909bfea-034c-4f27-1495-d4626d61e345" class="plus-and-minus-wrapper">
-          <h4>{{ texts.-12efdaf2 }}</h4><img src="{{ images.-29e75532.url }}" loading="lazy" width="25" style="display:block" alt="{{ images.-29e75532.alt | trim | escape }}" class="plus-sign"><img src="{{ images.-72a92318.url }}" loading="lazy" width="25" style="display:none" alt="{{ images.-72a92318.alt | trim | escape }}" class="minus-sign">
+          <h4>{{ texts.-12efdaf2 }}</h4>{%- image images.-29e75532.url, images.-29e75532.alt, '[]', 'loading="lazy" width="25" style="display:block" class="plus-sign"' -%}{%- image images.-72a92318.url, images.-72a92318.alt, '[]', 'loading="lazy" width="25" style="display:none" class="minus-sign"' -%}
         </div>
       </div>
       <div class="_1-2-2-2em-padding-wrapper expandable">
@@ -207,7 +210,7 @@
     </section>
     <section class="section wf-section">
       <div class="_2em-padding-wrapper">
-        <div class="p-ratio__16-9"><img src="{{ images.-5258012f.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;92vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 92vw" alt="{{ images.-5258012f.alt | trim | escape }}" class="ratio-image"></div>
+        <div class="p-ratio__16-9">{%- image images.-5258012f.url, images.-5258012f.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"92vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
         <div class="columns w-row">
           <div class="column w-col w-col-6">
             <div class="column-wrapper">
@@ -219,7 +222,7 @@
           <div class="column right-justify w-clearfix w-col w-col-6">
             <a href="{{ links.23 }}" class="circle gray w-inline-block">
               <div class="circle-text-wrapper">
-                <p class="circle-text">{{ texts.79c0567e }}</p><img src="{{ images.-15bf7f6c.url }}" loading="lazy" alt="{{ images.-15bf7f6c.alt | trim | escape }}" class="rotated-arrow">
+                <p class="circle-text">{{ texts.79c0567e }}</p>{%- image images.-15bf7f6c.url, images.-15bf7f6c.alt, '[]', 'loading="lazy" class="rotated-arrow"' -%}
               </div>
             </a>
           </div>
@@ -230,7 +233,7 @@
       <section class="w-row">
         <div class="full-width-column w-col w-col-6">
           <div class="_2em-padding-wrapper">
-            <div class="p-ratio__3-2"><img src="{{ images.44094e89.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.44094e89.alt | trim | escape }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image images.44094e89.url, images.44094e89.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="column-text-wrapper">
               <h3>{{ texts.6af22975 }}</h3>
               <p>{{ texts.-5286fc08 }}</p>
@@ -240,7 +243,7 @@
         </div>
         <div class="full-width-column w-col w-col-6">
           <div class="_2em-padding-wrapper mobile-top-border">
-            <div class="p-ratio__3-2"><img src="{{ images.36672a3d.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.36672a3d.alt | trim | escape }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image images.36672a3d.url, images.36672a3d.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="column-text-wrapper">
               <h3>{{ texts.6af22975 }}</h3>
               <p>{{ texts.-5286fc08 }}</p>
@@ -252,7 +255,7 @@
     </div>
     <section class="section wf-section">
       <div class="_2em-padding-wrapper">
-        <div class="p-ratio__16-9"><img src="{{ images.-2dc8d493.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;92vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 92vw" alt="{{ images.-2dc8d493.alt | trim | escape }}" class="ratio-image"></div>
+        <div class="p-ratio__16-9">{%- image images.-2dc8d493.url, images.-2dc8d493.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"92vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
         <div class="columns w-row">
           <div class="column w-col w-col-6">
             <div class="column-wrapper">
@@ -275,7 +278,7 @@
       <section class="w-row">
         <div class="full-width-column w-col w-col-6">
           <div class="_2em-padding-wrapper">
-            <div class="p-ratio__3-2"><img src="{{ images.-64631c8d.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.-64631c8d.alt | trim | escape }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image images.-64631c8d.url, images.-64631c8d.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="column-text-wrapper">
               <h3>{{ texts.-5cb8bedc }}</h3>
               <p>{{ texts.-5286fc08 }}</p>
@@ -285,7 +288,7 @@
         </div>
         <div class="full-width-column w-col w-col-6">
           <div class="_2em-padding-wrapper mobile-top-border">
-            <div class="p-ratio__3-2"><img src="{{ images.ba01b8e.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.ba01b8e.alt | trim | escape }}" class="ratio-image"></div>
+            <div class="p-ratio__3-2">{%- image images.ba01b8e.url, images.ba01b8e.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="column-text-wrapper">
               <h3>{{ texts.-6a23c5ab }}</h3>
               <p>{{ texts.-5286fc08 }}</p>

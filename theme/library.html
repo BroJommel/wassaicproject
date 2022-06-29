@@ -21,7 +21,10 @@
   <script async="" src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"></script>
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <section class="library-header wf-section">
@@ -50,7 +53,7 @@
         <div class="body-copy-small">{{ texts.5158f7d }}</div>
         <div data-hover="false" data-delay="0" class="w-dropdown">
           <div class="dropdown-toggle w-dropdown-toggle">
-            <div class="body-copy-small">{{ texts.1774fe }}</div><img src="{{ images.2bd5addd.url }}" loading="lazy" alt="{{ images.2bd5addd.alt | trim | escape }}" class="dropdown-arrow">
+            <div class="body-copy-small">{{ texts.1774fe }}</div>{%- image images.2bd5addd.url, images.2bd5addd.alt, '[]', 'loading="lazy" class="dropdown-arrow"' -%}
           </div>
           <nav class="w-dropdown-list">
             <a href="{{ links.23 }}" class="w-dropdown-link">{{ texts.-78547655 }}</a>
@@ -64,7 +67,7 @@
       {%- unless collection.length == 0 -%}<div role="list" class="_3-column-library-grid w-dyn-items">
         {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
           <a href="{{ item.url }}" class="card w-inline-block">
-            <div class="p-ratio__100"><img src="{{ item.data.f_portrait.url }}" loading="lazy" alt="{{ item.data.f_portrait.alt }}" class="ratio-image"></div>
+            <div class="p-ratio__100">{%- image item.data.f_portrait.url, item.data.f_portrait.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="card-title-wrapper">
               <div>{{ item.data.title }}</div>
             </div>
@@ -78,7 +81,7 @@
     {%- assign collection = collections.library-items | sort: "-created-on" -%}<div fs-cmscombine-element="list" fs-cmssort-element="list" fs-cmssort-type="date" class="w-dyn-list">
       {%- unless collection.length == 0 -%}<div role="list" class="_3-column-library-grid w-dyn-items">
         {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
-          <a href="{{ item.url }}" class="card w-inline-block"><img src="{{ item.data.f_image.url }}" loading="lazy" alt="{{ item.data.f_image.alt }}"></a>
+          <a href="{{ item.url }}" class="card w-inline-block">{%- image item.data.f_image.url, item.data.f_image.alt, '[]', 'loading="lazy"' -%}</a>
         </div>{%- endfor -%}
       </div>{%- endunless -%}
       {%- if collection.length == 0 -%}<div class="w-dyn-empty">
@@ -90,7 +93,7 @@
         {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
           <a href="{{ links.23 }}" class="card w-inline-block">
             <div class="_2em-padding-wrapper black">
-              <div class="p-ratio__100"><img src="{{ item.data.f_image.url }}" loading="lazy" alt="{{ item.data.f_image.alt }}" class="ratio-image"></div>
+              <div class="p-ratio__100">{%- image item.data.f_image.url, item.data.f_image.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
               <div class="margin-top-40px">
                 <div class="white-text">{{ item.data.title }}</div>
               </div>
@@ -105,7 +108,7 @@
     <div class="expandable-three-column-section margin-top-40px wf-section">
       <div class="expandable-top">
         <div data-w-id="bfb8065d-04ff-2a27-1f0b-04bc808482a5" class="plus-and-minus-wrapper">
-          <h4>{{ texts.6f25e0a7 }}</h4><img src="{{ images.-29e75532.url }}" loading="lazy" width="25" style="display:block" alt="{{ images.-29e75532.alt | trim | escape }}" class="plus-sign"><img src="{{ images.-72a92318.url }}" loading="lazy" width="25" style="display:none" alt="{{ images.-72a92318.alt | trim | escape }}" class="minus-sign">
+          <h4>{{ texts.6f25e0a7 }}</h4>{%- image images.-29e75532.url, images.-29e75532.alt, '[]', 'loading="lazy" width="25" style="display:block" class="plus-sign"' -%}{%- image images.-72a92318.url, images.-72a92318.alt, '[]', 'loading="lazy" width="25" style="display:none" class="minus-sign"' -%}
         </div>
       </div>
       <div style="display:none" class="expandable">

@@ -16,7 +16,10 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="_2em-padding-wrapper border-top">
@@ -25,7 +28,7 @@
   <div class="border-top wf-section">
     <div class="expandable-top">
       <div data-w-id="7726e28a-4c0f-675c-6585-761870ab7563" class="plus-and-minus-wrapper">
-        <h4>{{ texts.43f121c }}</h4><img src="{{ images.-29e75532.url }}" loading="lazy" width="25" style="display:block" alt="{{ images.-29e75532.alt | trim | escape }}" class="plus-sign"><img src="{{ images.-72a92318.url }}" loading="lazy" width="25" style="display:none" alt="{{ images.-72a92318.alt | trim | escape }}" class="minus-sign">
+        <h4>{{ texts.43f121c }}</h4>{%- image images.-29e75532.url, images.-29e75532.alt, '[]', 'loading="lazy" width="25" style="display:block" class="plus-sign"' -%}{%- image images.-72a92318.url, images.-72a92318.alt, '[]', 'loading="lazy" width="25" style="display:none" class="minus-sign"' -%}
       </div>
     </div>
     <div class="_1-2-2-2em-padding-wrapper expandable">

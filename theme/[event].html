@@ -14,14 +14,17 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="wf-section">
     <div class="_2em-padding-wrapper">
       <div class="w-layout-grid events-grid grid">
         <div id="w-node-_3ccada90-771a-39f6-3e36-83a206add745-d600dd3c">
-          <div id="w-node-_14941039-1f87-f0f5-1cd9-ad871a171a46-d600dd3c" class="p-ratio__100"><img src="{{ f_image.url }}" loading="lazy" alt="{{ f_image.alt }}" class="ratio-image"></div>
+          <div id="w-node-_14941039-1f87-f0f5-1cd9-ad871a171a46-d600dd3c" class="p-ratio__100">{%- image f_image.url, f_image.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
         </div>
         <div id="w-node-_30e0c167-83aa-5ce0-a562-cb7b733d287d-d600dd3c">
           <h1 class="event-title">{{ title }}</h1>
@@ -48,7 +51,7 @@
           <div class="w-richtext">{{ f_description | markdown }}</div>
           <div class="rsvp-and-calendar-wrapper margin-top-40px">
             {%- unless f_multi-date == true -%}<a data-w-id="28667af8-a261-32b7-fd04-7151fc477e30" href="{{ links.23 }}" class="calendar-button margin-right-10px w-inline-block">
-              <div class="calendar-icon-and-link"><img src="{{ images.-29607bc.url }}" loading="lazy" alt="{{ images.-29607bc.alt | trim | escape }}">
+              <div class="calendar-icon-and-link">{%- image images.-29607bc.url, images.-29607bc.alt, '[]', 'loading="lazy"' -%}
                 <div class="button-text black-text margin-left-10px">{{ texts.11fc3e44 }}</div>
               </div>
             </a>{%- endunless -%}

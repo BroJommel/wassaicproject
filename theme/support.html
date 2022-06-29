@@ -16,27 +16,30 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="secondary-nav navbar">
     <a href="{{ links.23 }}" class="breadcrumb">{{ texts.78873e6f }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.-555ead66 }}" class="breadcrumb">{{ texts.-3342ea76 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.4251dd19 }}" class="breadcrumb">{{ texts.395ce989 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.770d8817 }}" class="breadcrumb">{{ texts.-6795dcf9 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.-5627f421 }}" class="breadcrumb">{{ texts.-6cdd3144 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.36ad339a }}" class="breadcrumb">{{ texts.-7ad50c9 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.-100fda93 }}" class="breadcrumb">{{ texts.-4e6a5ef6 }}</a>
   </div>
   <div class="_2em-padding-wrapper">
     <h1 class="centered-text">{{ texts.-b54e851 }}</h1>
-    <div class="margin-top-40px"><img src="{{ images.-5adf0b67.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:2717,&quot;size&quot;:&quot;92vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;2500px&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 2717px) 92vw, 2500px" alt="{{ images.-5adf0b67.alt | trim | escape }}"></div>
+    <div class="margin-top-40px">{%- image images.-5adf0b67.url, images.-5adf0b67.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":2717,"size":"92vw"},{"max":10000,"size":"2500px"}]', 'loading="lazy"' -%}</div>
     <div class="w-layout-grid text-button-12-column-grid margin-top-40px">
       <div id="w-node-_54dfc64a-1c02-9295-d297-1a8d730ea2d5-766e566d">
         <p>{{ texts.-709f1330 }}</p>
@@ -51,7 +54,7 @@
   <div class="two-column-section w-row">
     <div class="full-width-column w-col w-col-6">
       <div id="planned-giving" class="_1-2-2-2em-padding-wrapper">
-        <div class="p-ratio__3-2"><img src="{{ images.17ad5e51.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.17ad5e51.alt | trim | escape }}" class="ratio-image"></div>
+        <div class="p-ratio__3-2">{%- image images.17ad5e51.url, images.17ad5e51.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
         <div class="column-text-wrapper">
           <h2>{{ texts.3f9c81aa }}</h2>
           <p>{{ texts.-3698c5fc }}<br><br>
@@ -62,7 +65,7 @@
     </div>
     <div class="full-width-column w-col w-col-6">
       <div id="buy-art" class="_1-2-2-2em-padding-wrapper mobile-top-border">
-        <div class="p-ratio__3-2"><img src="{{ images.-13b67448.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.-13b67448.alt | trim | escape }}" class="ratio-image"></div>
+        <div class="p-ratio__3-2">{%- image images.-13b67448.url, images.-13b67448.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
         <div class="column-text-wrapper">
           <h2>{{ texts.71baf189 }}</h2>
           <p>{{ texts.-7a41addb }}<br><br>{{ texts.5440ce7 }}<a href="{{ links.23 }}">{{ texts.68af8e1 }}</a>{{ texts.-331f1a60 }}<a href="{{ links.23 }}">{{ texts.2586550 }}</a>
@@ -107,7 +110,7 @@
       {%- unless collection.length == 0 -%}<div role="list" class="_3-column-grid w-dyn-items">
         {%- for item in collection -%}<div role="listitem" class="w-dyn-item">
           <a href="{{ links.23 }}" class="exhibition-card w-inline-block">
-            <div class="p-ratio__100"><img src="{{ item.data.f_image.url }}" loading="lazy" alt="{{ item.data.f_alt-text-image-1 }}" class="ratio-image"></div>
+            <div class="p-ratio__100">{%- image item.data.f_image.url, item.data.f_image.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
             <div class="exhibition-title-wrapper white">
               <h4>{{ item.data.title }}</h4>
               <div>{{ item.data.f_start-date-time | formatDate: "EEEE, MMMM d, yyyy" }}</div>
@@ -122,12 +125,12 @@
     </div>
   </div>
   <div id="supporters" class="_2em-padding-wrapper border-top">
-    <h2>{{ texts.-3dc196cb }}</h2><img src="{{ images.3ac7e850.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:2604,&quot;size&quot;:&quot;92vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;2396px&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 2604px) 92vw, 2396px" alt="{{ images.3ac7e850.alt | trim | escape }}">
+    <h2>{{ texts.-3dc196cb }}</h2>{%- image images.3ac7e850.url, images.3ac7e850.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":2604,"size":"92vw"},{"max":10000,"size":"2396px"}]', 'loading="lazy"' -%}
   </div>
   <div class="border-top wf-section">
     <div class="expandable-top">
       <div data-w-id="11e1fbd7-d35d-7d89-b3b7-0c0adb0914e9" class="plus-and-minus-wrapper">
-        <h4>{{ texts.3787d31d }}</h4><img src="{{ images.-29e75532.url }}" loading="lazy" width="25" style="display:block" alt="{{ images.-29e75532.alt | trim | escape }}" class="plus-sign"><img src="{{ images.-72a92318.url }}" loading="lazy" width="25" style="display:none" alt="{{ images.-72a92318.alt | trim | escape }}" class="minus-sign">
+        <h4>{{ texts.3787d31d }}</h4>{%- image images.-29e75532.url, images.-29e75532.alt, '[]', 'loading="lazy" width="25" style="display:block" class="plus-sign"' -%}{%- image images.-72a92318.url, images.-72a92318.alt, '[]', 'loading="lazy" width="25" style="display:none" class="minus-sign"' -%}
       </div>
     </div>
     <div class="_1-2-2-2em-padding-wrapper expandable">

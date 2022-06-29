@@ -17,20 +17,23 @@
   <script async="" src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsprevnext@1/cmsprevnext.js"></script>
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="secondary-nav navbar">
     <a href="{{ links.-851c443 }}" class="nav-link secondary">{{ texts.-1a1cbfe6 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.-7bf8b742 }}" class="nav-link secondary">{{ texts.-3beb1e9f }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.60a23086 }}" class="nav-link secondary">{{ texts.63d46089 }}</a>
   </div>
   <div id="introduction" class="w-layout-grid interview-introduction-grid">
     <div id="w-node-bb7089a6-6ae2-1f51-0f2d-2074a0052e23-cfa8f2c8" class="interview-introduction-wrapper">
       <h1 class="interview-artist-name">{{ title }}</h1>
-      {%- if content -%}<div class="interview-introduction w-richtext">{{ content | markdown }}</div>{%- endif -%}<img src="{{ f_portrait.url }}" loading="lazy" alt="{{ f_portrait.alt }}" class="interview-portrait">
+      {%- if content -%}<div class="interview-introduction w-richtext">{{ content | markdown }}</div>{%- endif -%}{%- image f_portrait.url, f_portrait.alt, '[]', 'loading="lazy" class="interview-portrait"' -%}
     </div>
   </div>
   <div id="interview" class="full-interview-wrapper wf-section">
@@ -40,17 +43,17 @@
         <div class="interview-text-p1 w-richtext">{{ f_interview-text-1-3500-char-max | markdown }}</div>
       </div>
     </div>
-    {%- if f_photos -%}<div class="w-layout-grid image-slider-grid w-clearfix"><img src="{{ images.7740bf4.url }}" loading="lazy" alt="{{ images.7740bf4.alt | trim | escape }}" class="prev-slide"><img src="{{ images.2453da7b.url }}" loading="lazy" alt="{{ images.2453da7b.alt | trim | escape }}" class="next-slide">
+    {%- if f_photos -%}<div class="w-layout-grid image-slider-grid w-clearfix">{%- image images.7740bf4.url, images.7740bf4.alt, '[]', 'loading="lazy" class="prev-slide"' -%}{%- image images.2453da7b.url, images.2453da7b.alt, '[]', 'loading="lazy" class="next-slide"' -%}
       {%- assign setItems = f_photos -%}<div id="w-node-_1366201b-8add-1710-63be-c0056114f611-cfa8f2c8" class="slider-wrapper is--images w-dyn-list">
         {%- unless setItems.length == 0 -%}<div role="list" class="slider-list is--images w-dyn-items">
-          {%- for setItem in setItems -%}<div data-w-id="1366201b-8add-1710-63be-c0056114f613" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{{ setItem.url }}" alt="{{ setItem.alt }}" class="interview-image"></div>{%- endfor -%}
+          {%- for setItem in setItems -%}<div data-w-id="1366201b-8add-1710-63be-c0056114f613" role="listitem" class="slider-item is--images w-dyn-item">{%- image setItem.url, setItem.alt, '[]', 'height="100" loading="lazy" width="100" class="interview-image"' -%}</div>{%- endfor -%}
         </div>{%- endunless -%}
         {%- if setItems.length == 0 -%}<div class="w-dyn-empty">
           <div>{{ texts.3d503d2b }}</div>
         </div>{%- endif -%}
       <template><div id="w-node-_1366201b-8add-1710-63be-c0056114f611-cfa8f2c8" class="slider-wrapper is--images w-dyn-list">
         <div role="list" class="slider-list is--images w-dyn-items">
-          <div data-w-id="1366201b-8add-1710-63be-c0056114f613" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{# setItem.url #}" alt="{# setItem.alt #}" class="interview-image"></div>
+          <div data-w-id="1366201b-8add-1710-63be-c0056114f613" role="listitem" class="slider-item is--images w-dyn-item"></div>
         </div>
         <div class="w-dyn-empty">
           <div>{# texts.3d503d2b #}</div>
@@ -62,17 +65,17 @@
         <div class="interview-text-p1 w-richtext">{{ f_interview-text-2-3500-char-max | markdown }}</div>
       </div>
     </div>{%- endif -%}
-    {%- if f_photos-2 -%}<div class="w-layout-grid image-slider-grid w-clearfix"><img src="{{ images.7740bf4.url }}" loading="lazy" alt="{{ images.7740bf4.alt | trim | escape }}" class="prev-slide"><img src="{{ images.2453da7b.url }}" loading="lazy" alt="{{ images.2453da7b.alt | trim | escape }}" class="next-slide">
+    {%- if f_photos-2 -%}<div class="w-layout-grid image-slider-grid w-clearfix">{%- image images.7740bf4.url, images.7740bf4.alt, '[]', 'loading="lazy" class="prev-slide"' -%}{%- image images.2453da7b.url, images.2453da7b.alt, '[]', 'loading="lazy" class="next-slide"' -%}
       {%- assign setItems = f_photos-2 -%}<div id="w-node-_5357a544-9e2d-66a4-c35c-cd9cb6a3d09a-cfa8f2c8" class="slider-wrapper is--images w-dyn-list">
         {%- unless setItems.length == 0 -%}<div role="list" class="slider-list is--images w-dyn-items">
-          {%- for setItem in setItems -%}<div data-w-id="5357a544-9e2d-66a4-c35c-cd9cb6a3d09c" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{{ setItem.url }}" alt="{{ setItem.alt }}" class="interview-image"></div>{%- endfor -%}
+          {%- for setItem in setItems -%}<div data-w-id="5357a544-9e2d-66a4-c35c-cd9cb6a3d09c" role="listitem" class="slider-item is--images w-dyn-item">{%- image setItem.url, setItem.alt, '[]', 'height="100" loading="lazy" width="100" class="interview-image"' -%}</div>{%- endfor -%}
         </div>{%- endunless -%}
         {%- if setItems.length == 0 -%}<div class="w-dyn-empty">
           <div>{{ texts.3d503d2b }}</div>
         </div>{%- endif -%}
       <template><div id="w-node-_5357a544-9e2d-66a4-c35c-cd9cb6a3d09a-cfa8f2c8" class="slider-wrapper is--images w-dyn-list">
         <div role="list" class="slider-list is--images w-dyn-items">
-          <div data-w-id="5357a544-9e2d-66a4-c35c-cd9cb6a3d09c" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{# setItem.url #}" alt="{# setItem.alt #}" class="interview-image"></div>
+          <div data-w-id="5357a544-9e2d-66a4-c35c-cd9cb6a3d09c" role="listitem" class="slider-item is--images w-dyn-item"></div>
         </div>
         <div class="w-dyn-empty">
           <div>{# texts.3d503d2b #}</div>
@@ -84,18 +87,18 @@
         <div class="interview-text-p1 w-richtext">{{ f_interview-text-3 | markdown }}</div>
       </div>
     </div>{%- endif -%}
-    {%- if f_photos-3 -%}<div class="w-layout-grid image-slider-grid w-clearfix"><img src="{{ images.7740bf4.url }}" loading="lazy" alt="{{ images.7740bf4.alt | trim | escape }}" class="prev-slide"><img src="{{ images.2453da7b.url }}" loading="lazy" alt="{{ images.2453da7b.alt | trim | escape }}" class="next-slide">
+    {%- if f_photos-3 -%}<div class="w-layout-grid image-slider-grid w-clearfix">{%- image images.7740bf4.url, images.7740bf4.alt, '[]', 'loading="lazy" class="prev-slide"' -%}{%- image images.2453da7b.url, images.2453da7b.alt, '[]', 'loading="lazy" class="next-slide"' -%}
       {%- if f_photos-3 -%}<div id="w-node-f40e2e62-1876-ebbd-c313-d66f67e1c173-cfa8f2c8" class="image-slider-wrapper-wrapper">
         {%- assign setItems = f_photos-3 -%}<div class="slider-wrapper is--images w-dyn-list">
           {%- unless setItems.length == 0 -%}<div role="list" class="slider-list is--images w-dyn-items">
-            {%- for setItem in setItems -%}<div data-w-id="f40e2e62-1876-ebbd-c313-d66f67e1c176" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{{ setItem.url }}" alt="{{ setItem.alt }}" class="interview-image"></div>{%- endfor -%}
+            {%- for setItem in setItems -%}<div data-w-id="f40e2e62-1876-ebbd-c313-d66f67e1c176" role="listitem" class="slider-item is--images w-dyn-item">{%- image setItem.url, setItem.alt, '[]', 'height="100" loading="lazy" width="100" class="interview-image"' -%}</div>{%- endfor -%}
           </div>{%- endunless -%}
           {%- if setItems.length == 0 -%}<div class="w-dyn-empty">
             <div>{{ texts.3d503d2b }}</div>
           </div>{%- endif -%}
         <template><div class="slider-wrapper is--images w-dyn-list">
           <div role="list" class="slider-list is--images w-dyn-items">
-            <div data-w-id="f40e2e62-1876-ebbd-c313-d66f67e1c176" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{# setItem.url #}" alt="{# setItem.alt #}" class="interview-image"></div>
+            <div data-w-id="f40e2e62-1876-ebbd-c313-d66f67e1c176" role="listitem" class="slider-item is--images w-dyn-item"></div>
           </div>
           <div class="w-dyn-empty">
             <div>{# texts.3d503d2b #}</div>
@@ -108,17 +111,17 @@
         <div class="interview-text-p1 w-richtext">{{ f_interview-text-4 | markdown }}</div>
       </div>
     </div>{%- endif -%}
-    {%- if f_photos-4 -%}<div class="w-layout-grid image-slider-grid w-clearfix"><img src="{{ images.7740bf4.url }}" loading="lazy" alt="{{ images.7740bf4.alt | trim | escape }}" class="prev-slide"><img src="{{ images.2453da7b.url }}" loading="lazy" alt="{{ images.2453da7b.alt | trim | escape }}" class="next-slide">
+    {%- if f_photos-4 -%}<div class="w-layout-grid image-slider-grid w-clearfix">{%- image images.7740bf4.url, images.7740bf4.alt, '[]', 'loading="lazy" class="prev-slide"' -%}{%- image images.2453da7b.url, images.2453da7b.alt, '[]', 'loading="lazy" class="next-slide"' -%}
       {%- assign setItems = f_photos-3 -%}<div id="w-node-_80f20aac-5506-959a-0c52-965c383b0c17-cfa8f2c8" class="slider-wrapper is--images w-dyn-list">
         {%- unless setItems.length == 0 -%}<div role="list" class="slider-list is--images w-dyn-items">
-          {%- for setItem in setItems -%}<div data-w-id="80f20aac-5506-959a-0c52-965c383b0c19" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{{ setItem.url }}" alt="{{ setItem.alt }}" class="interview-image"></div>{%- endfor -%}
+          {%- for setItem in setItems -%}<div data-w-id="80f20aac-5506-959a-0c52-965c383b0c19" role="listitem" class="slider-item is--images w-dyn-item">{%- image setItem.url, setItem.alt, '[]', 'height="100" loading="lazy" width="100" class="interview-image"' -%}</div>{%- endfor -%}
         </div>{%- endunless -%}
         {%- if setItems.length == 0 -%}<div class="w-dyn-empty">
           <div>{{ texts.3d503d2b }}</div>
         </div>{%- endif -%}
       <template><div id="w-node-_80f20aac-5506-959a-0c52-965c383b0c17-cfa8f2c8" class="slider-wrapper is--images w-dyn-list">
         <div role="list" class="slider-list is--images w-dyn-items">
-          <div data-w-id="80f20aac-5506-959a-0c52-965c383b0c19" role="listitem" class="slider-item is--images w-dyn-item"><img height="100" loading="lazy" width="100" src="{# setItem.url #}" alt="{# setItem.alt #}" class="interview-image"></div>
+          <div data-w-id="80f20aac-5506-959a-0c52-965c383b0c19" role="listitem" class="slider-item is--images w-dyn-item"></div>
         </div>
         <div class="w-dyn-empty">
           <div>{# texts.3d503d2b #}</div>
@@ -136,7 +139,7 @@
       <h3>{{ texts.-4ebc0f77 }}</h3>
       <div class="artist-bio w-richtext">{{ f_artist-bio-exhibition-history | markdown }}</div>
     </div>
-    <div id="w-node-_1172efb8-020c-0132-0f93-650e89cbef13-cfa8f2c8" class="artist-portrait-wrapper"><img src="{{ f_portrait-2.url }}" loading="lazy" alt="{{ f_portrait-2.alt }}" class="artist-portrait"></div>
+    <div id="w-node-_1172efb8-020c-0132-0f93-650e89cbef13-cfa8f2c8" class="artist-portrait-wrapper">{%- image f_portrait-2.url, f_portrait-2.alt, '[]', 'loading="lazy" class="artist-portrait"' -%}</div>
   </div>
   <div class="section wf-section">
     <div class="w-layout-grid two-column-footer">

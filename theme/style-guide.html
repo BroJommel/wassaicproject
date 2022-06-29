@@ -16,14 +16,17 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="secondary-nav navbar">
     <a href="{{ links.23 }}" class="nav-link secondary">{{ texts.-1a1cbfe6 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.23 }}" class="nav-link secondary">{{ texts.78f8c040 }}</a>
-    <div class="nav-arrow-wrapper"><img src="{{ images.-22c14932.url }}" loading="lazy" alt="{{ images.-22c14932.alt | trim | escape }}" class="nav-arrow"></div>
+    <div class="nav-arrow-wrapper">{%- image images.-22c14932.url, images.-22c14932.alt, '[]', 'loading="lazy" class="nav-arrow"' -%}</div>
     <a href="{{ links.23 }}" class="nav-link secondary">{{ texts.63d46089 }}</a>
   </div>
   <div class="_2em-padding-wrapper">
@@ -83,11 +86,11 @@
           {%- include "partials/yellow-category" -%}
         </div>
         <div id="w-node-_6cb44c79-ce08-17da-f7ad-b1c3f9bc0248-638d66dd">
-          <a href="{{ links.23 }}" class="calendar-button w-inline-block"><img src="{{ images.-29607bc.url }}" loading="lazy" alt="{{ images.-29607bc.alt | trim | escape }}" class="calendar-icon">
+          <a href="{{ links.23 }}" class="calendar-button w-inline-block">{%- image images.-29607bc.url, images.-29607bc.alt, '[]', 'loading="lazy" class="calendar-icon"' -%}
             <div class="button-text black-text">{{ texts.11fc3e44 }}</div>
           </a>
         </div>
-        <div id="w-node-_2ce26fab-1bc1-45f0-3365-4d167f310524-638d66dd"><img src="{{ images.-208f6db.url }}" loading="lazy" alt="{{ images.-208f6db.alt | trim | escape }}" class="hamburger-icon"></div>
+        <div id="w-node-_2ce26fab-1bc1-45f0-3365-4d167f310524-638d66dd">{%- image images.-208f6db.url, images.-208f6db.alt, '[]', 'loading="lazy" class="hamburger-icon"' -%}</div>
         <div id="w-node-db4b18a6-3d25-3db2-36a3-3bae6f6a5f73-638d66dd">
           <div class="tag-button">
             <div class="tag">{{ texts.661d8788 }}</div>
@@ -102,19 +105,19 @@
       <div>{{ texts.-3159353f }}</div>
       <div class="w-layout-grid _3-column-grid">
         <a id="w-node-_7352012a-e3bb-0058-5409-039709b9685e-638d66dd" href="{{ links.23 }}" class="exhibition-card w-inline-block">
-          <div class="p-ratio__16-9"><img src="{{ images.317f733b.url }}" loading="lazy" alt="{{ images.317f733b.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__16-9">{%- image images.317f733b.url, images.317f733b.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="exhibition-title-wrapper white">
             <h4>{{ texts.725c8c7 }}</h4>
           </div>
         </a>
         <a href="{{ links.23 }}" class="exhibition-card w-inline-block">
-          <div class="p-ratio__16-9"><img src="{{ images.317f733b.url }}" loading="lazy" alt="{{ images.317f733b.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__16-9">{%- image images.317f733b.url, images.317f733b.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="exhibition-title-wrapper white">
             <h4>{{ texts.725c8c7 }}</h4>
           </div>
         </a>
         <a id="w-node-_09adda6c-19eb-fd08-bf3c-54309e75a73e-638d66dd" href="{{ links.23 }}" class="exhibition-card w-inline-block">
-          <div class="p-ratio__16-9"><img src="{{ images.317f733b.url }}" loading="lazy" alt="{{ images.317f733b.alt | trim | escape }}" class="ratio-image"></div>
+          <div class="p-ratio__16-9">{%- image images.317f733b.url, images.317f733b.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
           <div class="exhibition-title-wrapper white">
             <h4>{{ texts.725c8c7 }}</h4>
           </div>

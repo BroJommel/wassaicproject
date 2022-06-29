@@ -16,7 +16,10 @@
   <link href="{{ settings.site.apple_touch_icon | default: "/assets/images/webclip.png" }}" rel="apple-touch-icon">
 {{ settings.site.header_additional_content }}{%- include "partials/_site-css-variables" -%}{%- include "partials/_snipcart" -%}<style>.w-video.w-embed {
             aspect-ratio: 16 / 9;
-        }</style></head>
+        }</style><style>picture { border: 0;
+        max-width: 100%;
+        vertical-align: middle;
+        display: inline-block; }</style></head>
 <body>
   {%- include "partials/navbar" -%}
   <div class="announcement-banner gray">
@@ -30,7 +33,7 @@
   <div class="_2em-padding-wrapper border-top">
     <h1 class="centered-text">{{ texts.661d8788 }}</h1>
   </div>
-  <div><img src="{{ images.-29ec899e.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:2500,&quot;size&quot;:&quot;100vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;2500px&quot;}]" sizes="(max-width: 2500px) 100vw, 2500px" alt="{{ images.-29ec899e.alt | trim | escape }}"></div>
+  <div>{%- image images.-29ec899e.url, images.-29ec899e.alt, '[{"max":2500,"size":"100vw"},{"max":10000,"size":"2500px"}]', 'loading="lazy"' -%}</div>
   <div class="_2em-padding-wrapper">
     <h2>{{ texts.-3470ce7d }}</h2>
     <div class="w-layout-grid six-section-grid margin-top-40px">
@@ -64,7 +67,7 @@
     <div class="full-width-column w-col w-col-6">
       <div class="_1-2-2-2em-padding-wrapper">
         {%- include "partials/yellow-category" -%}
-        <div class="p-ratio__3-2"><img src="{{ images.764dc831.url }}" loading="lazy" data-sizes="[{&quot;max&quot;:479,&quot;size&quot;:&quot;91vw&quot;},{&quot;max&quot;:767,&quot;size&quot;:&quot;89vw&quot;},{&quot;max&quot;:10000,&quot;size&quot;:&quot;42vw&quot;}]" sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, 42vw" alt="{{ images.764dc831.alt | trim | escape }}" class="ratio-image"></div>
+        <div class="p-ratio__3-2">{%- image images.764dc831.url, images.764dc831.alt, '[{"max":479,"size":"91vw"},{"max":767,"size":"89vw"},{"max":10000,"size":"42vw"}]', 'loading="lazy" class="ratio-image"' -%}</div>
         <div class="column-text-wrapper">
           <h3>{{ texts.1b2a2c99 }}</h3>
           <p class="body-copy">{{ texts.-400d1fa0 }}<em>{{ texts.18dc0fae }}</em>{{ texts.7924cc4e }}</p>
@@ -84,7 +87,7 @@
   </div>
   <div class="full-width-section wf-section">
     <div class="_1-2-2-2em-padding-wrapper">
-      <div class="p-ratio__16-9"><img src="{{ images.317f733b.url }}" loading="lazy" alt="{{ images.317f733b.alt | trim | escape }}" class="ratio-image"></div>
+      <div class="p-ratio__16-9">{%- image images.317f733b.url, images.317f733b.alt, '[]', 'loading="lazy" class="ratio-image"' -%}</div>
       <div class="rich-text-caption w-richtext">
         <p>{{ texts.21f59d35 }}<br>{{ texts.3803e743 }}</p>
       </div>
