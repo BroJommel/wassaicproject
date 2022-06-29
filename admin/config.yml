@@ -3364,6 +3364,10 @@ collections:
             label: Text
             name: 7e85e19e
             widget: string
+          - hint: 'Original text: No matching results., key: -75764c4'
+            label: Text
+            name: '-75764c4'
+            widget: string
           - hint: >-
               Original text: We have an untraditional approach to public art. As
               a non-collecting organization, we offer artists commissioning
@@ -3537,17 +3541,6 @@ collections:
               2558e3fa
             label: Link
             name: 2558e3fa
-            widget: string
-          - hint: 'Original link: https://www.eventbrite.com/e/-, key: 6f208abd'
-            label: Link
-            name: 6f208abd
-            widget: string
-          - hint: >-
-              Original link:
-              https://calndr.link/d/event/?service=google&start=&end=&title=&timezone=EST,
-              key: 7e926380
-            label: Link
-            name: '7e926380'
             widget: string
           - hint: 'Original link: #introduction, key: -851c443'
             label: Link
@@ -4032,19 +4025,6 @@ collections:
                 required: false
           - label: Image
             name: 36672a3d
-            widget: object
-            fields:
-              - name: url
-                label: Image Url
-                widget: image
-                allow_multiple: false
-                required: false
-              - name: alt
-                label: Image Alt
-                widget: string
-                required: false
-          - label: Image
-            name: '0'
             widget: object
             fields:
               - name: url
